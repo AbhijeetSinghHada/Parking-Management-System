@@ -23,8 +23,7 @@ class Menu:
         self.menu()
 
     @access_identifier
-    @staticmethod
-    def assign_slot(db):
+    def assign_slot(self):
         '''This Function is used to assign slot to a vehicle. 
         It takes vehicle number as input and checks if the vehicle exists in the database. 
         If it does not exist, it asks the user if they want to add the vehicle. 
@@ -35,12 +34,11 @@ class Menu:
         print("Functionality : Assign Slot\n")
         if input("Enter 'q' to exit : \nPress any key continue : ") == 'q':
             return
-        slot = Slot(db)
+        slot = Slot(self.db)
         slot.assign_slot()
 
     @access_identifier
-    @staticmethod
-    def add_vehicle(db):
+    def add_vehicle(self):
         '''This Function is used to add a vehicle to the database. 
         It takes vehicle number as input and checks if the vehicle exists in the database. If it do not exist, 
         it asks for vehicle details and adds the vehicle to the database.
@@ -49,85 +47,78 @@ class Menu:
         print("Functionality : Add Vehicle\n")
         if input("Enter 'q' to exit : \nPress any key continue : ") == 'q':
             return
-        vehicle = Vehicle(db)
+        vehicle = Vehicle(self.db)
         vehicle.add_vehicle()
 
     @access_identifier
-    @staticmethod
-    def add_vehicle_category(db):
+    def add_vehicle_category(self):
         '''This Function is used to add a vehicle category to the database. 
         It takes vehicle category, capacity and charge per hour as input and adds it to the database.'''
         print("Functionality : Add Vehicle Category\n")
         if input("Enter 'q' to exit : \nPress any key continue : ") == 'q':
             return
-        vehicle = Vehicle(db)
+        vehicle = Vehicle(self.db)
         print("Available Slots and Parking Capacity : \n")
-        Menu.check_parking_capacity(db)
+        Menu.check_parking_capacity(self)
         vehicle.add_vehicle_category()
 
     @access_identifier
-    @staticmethod
-    def check_parking_capacity(db):
+    def check_parking_capacity(self):
         '''This Function is used to Total parking capacity of the parking lot.'''
         print("Functionality : Check Parking Capacity\n")
-        vehicle = Vehicle(db)
+        vehicle = Vehicle(self.db)
         vehicle_types = vehicle.fetch_existing_types()
         vehicle_types = [(x[1], x[2]) for x in vehicle_types]
         print(tabulate(vehicle_types, headers=['Slot Type', 'Total Capacity']))
 
     @access_identifier
-    @staticmethod
-    def update_parking_space(db):
+    def update_parking_space(self):
         '''This Function is used to update the parking capacity of a vehicle category. 
         It takes vehicle category and new capacity as input and updates the parking capacity.'''
         print("Functionality : Update Parking Space\n")
         if input("Enter 'q' to exit : \nPress any key continue : ") == 'q':
             return
-        slot = Slot(db)
+        slot = Slot(self.db)
         slot.update_parking_space()
 
     @access_identifier
-    @staticmethod
-    def unassign_slot(db):
+    def unassign_slot(self):
         '''This Function is used to unassign slot for a vehicle. 
         It takes vehicle number as input and unassigns the slot.'''
         print("Functionality : Unassign Slot\n")
         if input("Enter 'q' to exit : \nPress any key continue : ") == 'q':
             return
-        slot = Slot(db)
+        slot = Slot(self.db)
         vehicle_number = get_vehicle_number()
         slot.unassign_slot(vehicle_number)
 
     @access_identifier
-    @staticmethod
-    def ban_slot(db):
+    def ban_slot(self):
         '''This Function is used to ban a slot. 
         It takes slot type and slot number as input and bans the slot.'''
         print("Functionality : Ban Slot\n")
         if input("Enter 'q' to exit : \nPress any key continue : ") == 'q':
             return
-        slot = Slot(db)
+        slot = Slot(self.db)
         slot.ban_slot()
 
     @access_identifier
-    @staticmethod
-    def unban_slot(db):
+    def unban_slot(self):
         '''This Function is used to unban a slot.
         It takes slot number as input and unbans the slot.'''
         print("Functionality : Unban Slot\n")
         if input("Enter 'q' to exit : \nPress any key continue : ") == 'q':
             return
-        slot = Slot(db)
+        slot = Slot(self.db)
         slot.unban_slot()
 
     @access_identifier
-    @staticmethod
-    def view_ban_slots(db):
+    def view_ban_slots(self):
         '''This Function is used to view all the banned slots.'''
         print("Functionality : View Ban Slots\n")
         if input("Enter 'q' to exit : \nPress any key continue : ") == 'q':
             return
-        slot = Slot(db)
+        slot = Slot(self.db)
         slot.view_ban_slots()
 
     def operator_choices(self, choice):
@@ -192,7 +183,7 @@ class Menu:
                 print("Invalid Choice.")
                 continue
             try:
-                self.admin_choices(user_choice)(self.db)
+                self.admin_choices(user_choice)(self)
             except Exception as e:
                 print(e)
 
@@ -206,11 +197,11 @@ class Menu:
                 print("Invalid Choice.")
                 continue
             try:
-                self.operator_choices(user_choice)(self.db)
+                self.operator_choices(user_choice)(self)
             except Exception as e:
                 print(e)
 
 
 if __name__ == '__main__':
     db = Database()
-    Menu({"name": "Kittu", "user_id": 2, "roles": [1, 2]}, db)
+    Menu({"name": "Kittu", "user_id": 2, "roles": [1,2]}, db)

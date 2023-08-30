@@ -31,12 +31,14 @@ class Slot(Vehicle, Billing):
 
     def assign_slot(self):
         slot_types = self.fetch_slot_types()
-        user_inp = helpers.check_input_in_range('Select Vehicle Type : ', len(slot_types))
+        user_inp = helpers.check_input_in_range(
+            'Select Vehicle Type : ', len(slot_types))
         vehicle_type = slot_types[user_inp - 1][0]
         self.display_slot_table_by_category(vehicle_type)
         slot_type_capacity = self.db.get_item(
             sql_queries.fetch_capacity_by_slot_types, (vehicle_type,))
-        self.slot_number = helpers.check_input_in_range('Select Slot Number : ', slot_type_capacity[0])
+        self.slot_number = helpers.check_input_in_range(
+            'Select Slot Number : ', slot_type_capacity[0])
         self.check_if_slot_already_occupied()
         self.vehicle_number = get_vehicle_number()
         if self.db.get_multiple_items(sql_queries.get_slot_by_vehicle_number, (self.vehicle_number,)):
@@ -65,10 +67,11 @@ class Slot(Vehicle, Billing):
         if choice == 'y' or choice == 'Y':
             self.add_vehicle()
         raise
+
     def check_if_slot_already_occupied(self):
         if self.all_slots_data[int(self.slot_number) - 1][1] == 'Occupied':
-            raise LookupError("Slot Already Occupied! Choose One Which is not.")
-
+            raise LookupError(
+                "Slot Already Occupied! Choose One Which is not.")
 
     def unassign_slot(self, vehicle_number):
         data = self.db.get_multiple_items(
@@ -84,7 +87,8 @@ class Slot(Vehicle, Billing):
 
         total_charges = self.calculate_charges(charges, hours)
         datetime_now = return_current_date_time()
-        billing_id = self.db.get_item(sql_queries.get_billing_id, (vehicle_number,))
+        billing_id = self.db.get_item(
+            sql_queries.get_billing_id, (vehicle_number,))
         self.db.update_item(
             sql_queries.update_billing_table, (datetime_now, total_charges, vehicle_number))
         self.db.update_item(sql_queries.delete_parked_slot, (vehicle_number,))
@@ -92,10 +96,12 @@ class Slot(Vehicle, Billing):
 
     def ban_slot(self):
         slot_types = self.fetch_slot_types()
-        user_inp = helpers.check_input_in_range('Select Vehicle Type To Ban Slot: ', slot_types)
+        user_inp = helpers.check_input_in_range(
+            'Select Vehicle Type To Ban Slot: ', slot_types)
         vehicle_type = slot_types[user_inp - 1][0]
         self.display_slot_table_by_category(vehicle_type)
-        self.slot_number = input_and_validation.get_int_input("Enter Slot Number : ")
+        self.slot_number = input_and_validation.get_int_input(
+            "Enter Slot Number : ")
         self.check_if_slot_already_occupied()
         slot_type_capacity = self.db.get_item(
             sql_queries.fetch_capacity_by_slot_types, (vehicle_type,))
@@ -116,10 +122,7 @@ class Slot(Vehicle, Billing):
         data = self.view_ban_slots()
         if not data:
             raise ValueError("No Slots to Unban.")
-        slot_number = input_and_validation.get_int_input("Enter Slot Number to Unban : ")
-        while slot_number < 1 or slot_number > len(data):
-            print("Enter Correct Index Value. \nOut of Range.")
-            slot_number = int(input("Enter Slot Number to Unban : "))
+        slot_number = helpers.check_input_in_range("Enter Slot Number to Unban : ",len(data))
         slot_number = data[slot_number - 1][1]
         self.db.update_item(sql_queries.unban_slot, (slot_number,))
         print("\nSlot Unbanned Successfully.\n")

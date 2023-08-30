@@ -1,5 +1,6 @@
 from src.controllers.slot import Slot
 from src.helpers import helpers, input_and_validation
+from src.utils import sql_queries
 
 
 class ParkingSpace(Slot):
@@ -17,3 +18,7 @@ class ParkingSpace(Slot):
         vehicle_type_id = int(vehicle_types[update_for_index - 1][0])
         self.update_parking_capacity(new_capacity, vehicle_type_id)
         print("\nParking Capacity Updated Successfully\n")
+
+    def update_parking_capacity(self, total_capacity, category_id):
+        self.db.update_item(
+            sql_queries.update_vehicle_capacity, (total_capacity, category_id))

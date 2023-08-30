@@ -1,14 +1,5 @@
-import json
 from datetime import datetime
-
 from src.helpers import input_and_validation
-
-
-def dump_roles_to_cache(user_data):
-    with open(
-            'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\Parking Management System\\src\\configurations\\cache.txt',
-            'w') as fp:
-        json.dump(user_data, fp)
 
 
 def convert_user_details_to_dict(lst):
@@ -20,8 +11,9 @@ def convert_user_details_to_dict(lst):
 
 def check_input_in_range(message, comparison_category):
     user_inp = input_and_validation.get_int_input(message)
-    while user_inp >comparison_category or user_inp < 1:
-        user_inp = input_and_validation.get_int_input(f'Please Enter valid index: ')
+    while user_inp > comparison_category or user_inp < 1:
+        user_inp = input_and_validation.get_int_input(
+            f'Please Enter valid index: ')
     return user_inp
 
 

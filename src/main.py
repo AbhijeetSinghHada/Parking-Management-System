@@ -1,7 +1,6 @@
 from src.controllers.login import Login
 from controllers.menu import Menu
 from src.models.database import Database
-from src.helpers.helpers import dump_roles_to_cache
 
 
 def login_menu():
@@ -18,7 +17,6 @@ def login_menu():
                 login = Login(db)
                 login.authenticate()
                 user_data = login.fetch_user_roles()
-                dump_roles_to_cache(user_data)
                 Menu(user_data, db)
 
             except Exception as e:

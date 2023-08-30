@@ -93,9 +93,7 @@ class Vehicle(Customer):
         vehicle_types = self.db.get_multiple_items(sql_queries.fetch_vehicle_types)
         return vehicle_types
 
-    def update_parking_capacity(self, total_capacity, category_id):
-        self.db.update_item(
-            sql_queries.update_vehicle_capacity, (total_capacity, category_id))
+
 
 
 
