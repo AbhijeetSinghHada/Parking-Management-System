@@ -1,11 +1,12 @@
 import json
 from datetime import datetime
-
+import logging
 from src.configurations import config
 from src.helpers import input_and_validation
-
+logger = logging.getLogger(__name__)
 
 def convert_user_details_to_dict(lst):
+    logger.debug("convert_user_details_to_dict called with params {}".format(lst))
     user_dict = {'name': lst[0][0],
                  'user_id': lst[0][1],
                  'roles': [x[2] for x in lst]}

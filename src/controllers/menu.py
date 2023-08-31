@@ -1,3 +1,5 @@
+import traceback
+
 from tabulate import tabulate
 from src.controllers.parking_space import ParkingSpace
 from src.helpers import input_and_validation
@@ -8,6 +10,8 @@ from src.controllers.vehicle import Vehicle
 from src.configurations import config
 from src.helpers.input_and_validation import get_vehicle_number
 from src.utils import prompts
+import logging
+logger = logging.getLogger(__name__)
 
 
 class Menu:
@@ -111,11 +115,19 @@ class Menu:
         slot.unban_slot()
 
     @access_identifier
+    def update_parking_charges(self):
+        '''This Function is used to update the parking charges of a vehicle category. 
+        It takes vehicle category and new charges as input and updates the parking charges.'''
+        print("Functionality : Update Parking Charges\n")
+        if input("Enter 'q' to exit : \nPress any key continue : ") == 'q':
+            return
+        parking_space = ParkingSpace(self.db)
+        parking_space.update_parking_charges()
+
+    @access_identifier
     def view_ban_slots(self):
         '''This Function is used to view all the banned slots.'''
         print("Functionality : View Ban Slots\n")
-        if input("Enter 'q' to exit : \nPress any key continue : ") == 'q':
-            return
         slot = Slot(self.db)
         slot.view_ban_slots()
 
@@ -137,10 +149,12 @@ class Menu:
         elif choice == 3:
             return Menu.update_parking_space
         elif choice == 4:
-            return Menu.ban_slot
+            return Menu.update_parking_charges
         elif choice == 5:
-            return Menu.unban_slot
+            return Menu.ban_slot
         elif choice == 6:
+            return Menu.unban_slot
+        elif choice == 7:
             return Menu.view_ban_slots
 
     def admin_view(self, choice):
@@ -169,20 +183,22 @@ class Menu:
             try:
                 self.admin_view(user_choice)
             except Exception as e:
+                logger.debug(e)
                 print(e)
 
     def admin_menu(self):
         while True:
             print(prompts.ADMIN_VIEW)
             user_choice = input_and_validation.get_int_input('Your Choice - ')
-            if user_choice == 7:
+            if user_choice == 8:
                 return
-            if user_choice > 7:
+            if user_choice > 8:
                 print("Invalid Choice.")
                 continue
             try:
                 self.admin_choices(user_choice)(self)
             except Exception as e:
+                logger.debug(e)
                 print(e)
 
     def operator_menu(self):
@@ -197,9 +213,10 @@ class Menu:
             try:
                 self.operator_choices(user_choice)(self)
             except Exception as e:
+                logger.debug(e)
                 print(e)
 
 
 if __name__ == '__main__':
     db = Database()
-    Menu({"name": "Kittu", "user_id": 2, "roles": [1,2]}, db)
+    Menu({"name": "Kittu", "user_id": 2, "roles": [1, 2]}, db)

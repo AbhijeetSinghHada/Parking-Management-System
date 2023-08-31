@@ -1,7 +1,5 @@
-from src.utils.sql_queries import fetch_user_details
 import hashlib
 from src.helpers.errors import AuthenticationError
-from src.utils import sql_queries
 from src.helpers import input_and_validation, helpers
 
 
@@ -22,7 +20,7 @@ class Login:
 
     def fetch_user_roles(self):
         self.user_data = self.db.get_multiple_items(
-            fetch_user_details, (self.user_id,))
+            self.sql_queries["fetch_user_details"], (self.user_id,))
         self.user_data = helpers.convert_user_details_to_dict(self.user_data)
         return self.user_data
 

@@ -1,7 +1,8 @@
 from tabulate import tabulate
 from src.controllers.customer import Customer
 from src.helpers import errors, input_and_validation, helpers
-
+import logging
+logger = logging.getLogger(__name__)
 
 class Vehicle(Customer):
     def __init__(self, db):
@@ -12,13 +13,16 @@ class Vehicle(Customer):
         self.db = db
 
     def get_vehicle_data(self, vehicle_number='', customer_id='', email_address=''):
+        logger.debug("get_vehicle_data called with params {},{},{}".format(
+            vehicle_number, customer_id, email_address))
         vehicles = self.db.get_multiple_items(self.sql_queries["fetch_vehicle_data"],
                                               (vehicle_number, customer_id, email_address))
         return vehicles
 
     def print_vehicle_details(self, data):
+        logger.debug("print_vehicle_details called with params {}".format(data))
         print("Vehicle Details : ")
-        for index, i in enumerate(data):
+        for i in data:
             print(f'Customer ID : {i[0]}')
             print(f'Customer Name : {i[1]}')
             print(f'Customer Email Address : {i[2]}')
@@ -27,6 +31,7 @@ class Vehicle(Customer):
             print(f'Vehicle Type : {i[5]}')
 
     def set_vehicle_customer_data(self, data):
+        logger.debug("set_vehicle_customer_data called with params {}".format(data))
         self.customer_id = data[0][0]
         self.name = data[0][1]
         self.email_address = data[0][2]
@@ -35,6 +40,7 @@ class Vehicle(Customer):
         self.vehicle_type = data[0][5]
 
     def check_if_vehicle_exists(self, vehicle_number):
+        logger.debug("check_if_vehicle_exists called with params {}".format(vehicle_number))
         data = self.get_vehicle_data(vehicle_number=vehicle_number)
         if data:
             self.set_vehicle_customer_data(data)
@@ -42,6 +48,7 @@ class Vehicle(Customer):
         return None
 
     def fetch_slot_types(self):
+        logger.debug("fetch_slot_types called")
         slot_types = self.db.get_multiple_items(
             self.sql_queries["fetch_slot_types"])
         slot_types_modified_list = [x[0] for x in slot_types]
@@ -52,6 +59,7 @@ class Vehicle(Customer):
         return slot_types
 
     def add_vehicle(self):
+        logger.debug("add_vehicle called with params {}".format(self.vehicle_number))
         self.vehicle_number = input_and_validation.get_vehicle_number()
         data = self.check_if_vehicle_exists(self.vehicle_number)
         if data:
@@ -72,6 +80,9 @@ class Vehicle(Customer):
             self.db.update_item(
                 self.sql_queries["insert_vehicle_by_customer_id"],
                 (customer_data[0][0], self.vehicle_number, self.vehicle_type))
+            print("Vehicle Added Successfully, Customer Already Exists.")
+            print("\nCustomer Details : \n")
+            self.print_customer_details(customer_data)
             return
         self.db.update_item(
             self.sql_queries["insert_customer"], (self.name, self.email_address, self.phone_number))
@@ -81,6 +92,7 @@ class Vehicle(Customer):
         print("\nVehicle Added Successfully.\n")
 
     def add_vehicle_category(self):
+        logger.debug("add_vehicle_category called")
         existing_vehicles = self.fetch_existing_types()
         slot_type = input_and_validation.get_string_input(
             "Enter Slot Type Name : ")
@@ -101,6 +113,7 @@ class Vehicle(Customer):
         print("\nVehicle Category Added Successfully.\n")
 
     def fetch_existing_types(self):
+        logger.debug("fetch_existing_types called")
         vehicle_types = self.db.get_multiple_items(
             self.sql_queries["fetch_vehicle_types"])
         return vehicle_types

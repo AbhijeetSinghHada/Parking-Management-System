@@ -1,6 +1,12 @@
 from src.controllers.login import Login
 from controllers.menu import Menu
 from src.models.database import Database
+import logging
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    filename='logs.txt')
+
+logger = logging.getLogger(__name__)
 
 
 def login_menu():
@@ -20,6 +26,7 @@ def login_menu():
                 Menu(user_data, db)
 
             except Exception as e:
+                logger.debug(e)
                 print(e)
 
 

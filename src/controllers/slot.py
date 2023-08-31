@@ -4,6 +4,8 @@ from tabulate import tabulate
 from datetime import date, datetime
 from src.helpers import helpers
 from src.helpers.input_and_validation import get_vehicle_number
+import logging
+logger = logging.getLogger(__name__)
 
 
 class Slot(Vehicle, Billing):
@@ -14,6 +16,8 @@ class Slot(Vehicle, Billing):
         self.db = db
 
     def display_slot_table_by_category(self, vehicle_type):
+        logger.debug("display_slot_table_by_category called with params {}".format(
+            vehicle_type))
         slot_data = self.db.get_multiple_items(
             self.sql_queries["fetch_all_slots_by_category"], (vehicle_type,))
         slot_type_capacity = self.db.get_item(
@@ -29,15 +33,22 @@ class Slot(Vehicle, Billing):
         print(tabulate(self.all_slots_data, headers=['Slot Number', 'Status']))
 
     def assign_slot(self):
+        logger.debug("assign_slot called")
         slot_types = self.fetch_slot_types()
+
         user_inp = helpers.check_input_in_range(
             'Select Vehicle Type : ', len(slot_types))
+
         vehicle_type = slot_types[user_inp - 1][0]
+
         self.display_slot_table_by_category(vehicle_type)
+
         slot_type_capacity = self.db.get_item(
             self.sql_queries["fetch_capacity_by_slot_types"], (vehicle_type,))
+
         self.slot_number = helpers.check_input_in_range(
             'Select Slot Number : ', slot_type_capacity[0])
+
         self.check_if_slot_already_occupied()
         self.vehicle_number = get_vehicle_number()
         if self.db.get_multiple_items(self.sql_queries["get_slot_by_vehicle_number"], (self.vehicle_number,)):
@@ -49,7 +60,6 @@ class Slot(Vehicle, Billing):
         if vehicle_type != self.vehicle_type:
             print("Wrong slot type for vehicle! Try Again.")
             return
-
         self.set_vehicle_customer_data(data)
         today_date = date.today()
         now = datetime.now()
@@ -61,22 +71,31 @@ class Slot(Vehicle, Billing):
         print("Slot Added Successfully.")
 
     def redirect_to_add_vehicle(self):
+
         choice = input(
             "If you want to add Vehicle enter y: \nPress Enter to goto Main Menu : ")
+        logger.debug("redirect_to_add_vehicle called with params {}".format(
+            choice))
         if choice == 'y' or choice == 'Y':
             self.add_vehicle()
         raise
 
     def check_if_slot_already_occupied(self):
+        logger.debug("check_if_slot_already_occupied called with params {},{}".format(
+            self.all_slots_data, self.slot_number))
         if self.all_slots_data[int(self.slot_number) - 1][1] == 'Occupied':
             raise LookupError(
                 "Slot Already Occupied! Choose One Which is not.")
 
     def unassign_slot(self, vehicle_number):
+        logger.debug("unassign_slot called with params {}".format(
+            vehicle_number))
         data = self.db.get_multiple_items(
             self.sql_queries["get_slot_by_vehicle_number"], (vehicle_number,))
         if not data:
-            raise LookupError("Vehicle is not yet Parked. Please First Assign Slot")
+            raise LookupError(
+                "Vehicle is not yet Parked. Please First Assign Slot")
+
         date_time_of_bill = self.db.get_multiple_items(
             self.sql_queries["get_bill_date_time_from_vehicle_number"], (vehicle_number,))
         hours = helpers.return_no_of_hours_elapsed(
@@ -95,6 +114,7 @@ class Slot(Vehicle, Billing):
         self.generate_bill(billing_id[0])
 
     def ban_slot(self):
+        logger.debug("ban_slot called")
         slot_types = self.fetch_slot_types()
         user_inp = helpers.check_input_in_range(
             'Select Vehicle Type To Ban Slot: ', len(slot_types))
@@ -108,12 +128,14 @@ class Slot(Vehicle, Billing):
         print("\nSlot Banned Successfully.\n")
 
     def view_ban_slots(self):
+        logger.debug("view_ban_slots called")
         data = self.db.get_multiple_items(self.sql_queries["view_ban_slots"])
         data = [(i, x[0], x[1]) for i, x in enumerate(data, start=1)]
         print(tabulate(data, headers=['Index', 'Slot Number', 'Slot Type']))
         return data
 
     def unban_slot(self):
+        logger.debug("unban_slot called")
         data = self.db.get_multiple_items(self.sql_queries["view_ban_slots"])
         if not data:
             raise ValueError("\nNo Slots to Unban.\n")
@@ -122,7 +144,8 @@ class Slot(Vehicle, Billing):
             "Enter Slot Number Index to Unban : ", len(data))
         slot_number = data[slot_number_index - 1][0]
         slot_type = data[slot_number_index - 1][1]
-        self.db.update_item(self.sql_queries["unban_slot"], (slot_number,slot_type))
+        self.db.update_item(
+            self.sql_queries["unban_slot"], (slot_number, slot_type))
         print("\nSlot Unbanned Successfully.\n")
 
 

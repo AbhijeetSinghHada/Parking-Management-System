@@ -1,21 +1,27 @@
 from src.helpers import helpers
 from src.helpers.helpers import return_date_time_combined
 from src.utils import prompts
+import logging
+logger = logging.getLogger(__name__)
 class Billing:
     def __init__(self):
         self.sql_queries = helpers.get_sql_queries()
         pass
 
     def calculate_charges(self, charges: int, hours_parked_for):
+        logger.debug("calculate_charges called with params {},{}".format(
+            charges, hours_parked_for))
         if hours_parked_for > 0:
             total_charges = hours_parked_for * charges
             return total_charges
         return 1 * charges
 
     def _print_bill(self, bill):
+        logger.debug("_print_bill called with params {}".format(bill))
         print(prompts.BILL_FORMAT.format(*bill))
 
     def generate_bill(self, billing_id):
+        logger.debug("generate_bill called with params {}".format(billing_id))
         data = self.db.get_multiple_items(
             self.sql_queries["get_billing_details"], (billing_id,))
         if not data:

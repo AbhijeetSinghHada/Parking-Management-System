@@ -1,0 +1,18 @@
+2023-08-31 21:31:32,652 - src.models.database - DEBUG - Connection established
+2023-08-31 21:31:37,533 - src.models.database - DEBUG - get_multiple_item called with params (('abhi', '5b8f959893c5d694a489184a068794eb74499f737cb5ad2fb96e31d1cc6098f5'),) returned item : [(1, 'abhi', '5b8f959893c5d694a489184a068794eb74499f737cb5ad2fb96e31d1cc6098f5', 1)] 
+2023-08-31 21:31:37,533 - src.models.database - DEBUG - get_multiple_item called with params ((1,),) returned item : [('Abhijeet Singh', 1, 1), ('Abhijeet Singh', 1, 2)] 
+2023-08-31 21:31:37,533 - src.helpers.helpers - DEBUG - convert_user_details_to_dict called with params [('Abhijeet Singh', 1, 1), ('Abhijeet Singh', 1, 2)]
+2023-08-31 21:31:44,031 - src.controllers.slot - DEBUG - ban_slot called
+2023-08-31 21:31:44,031 - src.controllers.vehicle - DEBUG - fetch_slot_types called
+2023-08-31 21:31:44,031 - src.models.database - DEBUG - get_multiple_item called with params () returned item : [('LMV',), ('HMV',), ('Bike',), ('Cycle',)] 
+2023-08-31 21:31:48,740 - src.controllers.slot - DEBUG - display_slot_table_by_category called with params LMV
+2023-08-31 21:31:48,740 - src.models.database - DEBUG - get_multiple_item called with params (('LMV',),) returned item : [] 
+2023-08-31 21:31:48,740 - src.models.database - DEBUG - get_item called with params (('LMV',),) returned item : (20,), 
+2023-08-31 21:31:50,096 - src.controllers.slot - DEBUG - check_if_slot_already_occupied called with params [[1, 'Not Occupied'], [2, 'Not Occupied'], [3, 'Not Occupied'], [4, 'Not Occupied'], [5, 'Not Occupied'], [6, 'Not Occupied'], [7, 'Not Occupied'], [8, 'Not Occupied'], [9, 'Not Occupied'], [10, 'Not Occupied'], [11, 'Not Occupied'], [12, 'Not Occupied'], [13, 'Not Occupied'], [14, 'Not Occupied'], [15, 'Not Occupied'], [16, 'Not Occupied'], [17, 'Not Occupied'], [18, 'Not Occupied'], [19, 'Not Occupied'], [20, 'Not Occupied']],1
+2023-08-31 21:31:50,108 - src.models.database - DEBUG - update_item called with params ((1, 'LMV'),) returned item : 18, 
+2023-08-31 21:31:54,629 - src.controllers.slot - DEBUG - ban_slot called
+2023-08-31 21:31:54,629 - src.controllers.vehicle - DEBUG - fetch_slot_types called
+2023-08-31 21:31:54,645 - src.models.database - DEBUG - get_multiple_item called with params () returned item : [('LMV',), ('HMV',), ('Bike',), ('Cycle',)] 
+2023-08-31 21:31:55,966 - src.controllers.slot - DEBUG - display_slot_table_by_category called with params HMV
+2023-08-31 21:31:55,966 - src.models.database - DEBUG - get_multiple_item called with params (('HMV',),) returned item : [(2, -1, 1, 'HMV', 30)] 
+2023-08-31 21:31:55,966 - src.models.database - DEBUG - get_item called with params (('HMV',),) returned item : (30,), 

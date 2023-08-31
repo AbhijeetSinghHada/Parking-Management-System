@@ -2,10 +2,11 @@ ADMIN_VIEW = """\nPark+ Admin Menu!! Choose from the options below -\n
 1) Check Parking Capacity
 2) Add Vehicle Category
 3) Update Parking Space
-4) Ban Slot
-5) Unban Slot
-6) View Ban Slots
-7) Quit\n"""
+4) Update Parking Charges
+5) Ban Slot
+6) Unban Slot
+7) View Ban Slots
+8) Quit\n"""
 
 OPERATOR_VIEW = """\nPark+ Operator Menu!! Choose from the options below -\n
 1) Check Parking Capacity
