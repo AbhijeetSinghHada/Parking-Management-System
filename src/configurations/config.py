@@ -13,3 +13,5 @@ action_role_mapping = {
     'unban_slot': [1],
     'view_ban_slots': [1]
 }
+
+sql_queries_path = "C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\Parking Management System\\src\\utils\\sql_queries.json"

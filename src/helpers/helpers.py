@@ -1,4 +1,7 @@
+import json
 from datetime import datetime
+
+from src.configurations import config
 from src.helpers import input_and_validation
 
 
@@ -8,6 +11,9 @@ def convert_user_details_to_dict(lst):
                  'roles': [x[2] for x in lst]}
     return user_dict
 
+def get_sql_queries():
+    with open(config.sql_queries_path, "r") as fp:
+        return json.load(fp)
 
 def check_input_in_range(message, comparison_category):
     user_inp = input_and_validation.get_int_input(message)
@@ -18,7 +24,6 @@ def check_input_in_range(message, comparison_category):
 
 
 def return_time_difference(_date, _time):
-    print(_time)
     _time = (datetime.min + _time).time()
     tdelta = (datetime.now() - datetime.combine(_date, _time))
     return tdelta

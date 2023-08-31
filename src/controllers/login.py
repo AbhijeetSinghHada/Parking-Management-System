@@ -2,8 +2,7 @@ from src.utils.sql_queries import fetch_user_details
 import hashlib
 from src.helpers.errors import AuthenticationError
 from src.utils import sql_queries
-from src.helpers import input_and_validation
-from src.helpers.helpers import convert_user_details_to_dict
+from src.helpers import input_and_validation, helpers
 
 
 class Login:
@@ -13,6 +12,7 @@ class Login:
         self.user_id = None
         self.user_data = None
         self.db = db
+        self.sql_queries = helpers.get_sql_queries()
         self.__get_user_credentials()
 
     def __get_user_credentials(self):
@@ -23,12 +23,12 @@ class Login:
     def fetch_user_roles(self):
         self.user_data = self.db.get_multiple_items(
             fetch_user_details, (self.user_id,))
-        self.user_data = convert_user_details_to_dict(self.user_data)
+        self.user_data = helpers.convert_user_details_to_dict(self.user_data)
         return self.user_data
 
     def authenticate(self):
         data = self.db.get_multiple_items(
-            sql_queries.fetch_login_details, (self.username, self.password))
+            self.sql_queries["fetch_login_details"], (self.username, self.password))
         if data:
             self.user_id = data[0][0]
             return self.user_id

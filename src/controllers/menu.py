@@ -1,7 +1,5 @@
-import traceback
-
 from tabulate import tabulate
-
+from src.controllers.parking_space import ParkingSpace
 from src.helpers import input_and_validation
 from src.models.database import Database
 from src.utils.access_decorator import access_identifier
@@ -78,8 +76,8 @@ class Menu:
         print("Functionality : Update Parking Space\n")
         if input("Enter 'q' to exit : \nPress any key continue : ") == 'q':
             return
-        slot = Slot(self.db)
-        slot.update_parking_space()
+        parking_space = ParkingSpace(self.db)
+        parking_space.update_parking_space()
 
     @access_identifier
     def unassign_slot(self):
