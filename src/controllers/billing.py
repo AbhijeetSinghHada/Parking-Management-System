@@ -26,6 +26,7 @@ class Billing:
             self.sql_queries["get_billing_details"], (billing_id,))
         if not data:
             print("Bill ID do not Exists.")
+            logger.critical("Bill ID do not Exists.")
             return
         bill = data[0]
         bill = list(bill)
