@@ -1,20 +1,24 @@
-from src.controllers.login import Login
-from controllers.menu import Menu
-from src.models.database import Database
+"""Main module to run the application"""
 import logging
+import traceback
+
+from src.controllers.login import Login
+from src.controllers.menu import Menu
+from src.helpers.helpers import get_prompts
+from src.models.database import Database
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     filename='logs.txt')
 
 logger = logging.getLogger(__name__)
+prompts = get_prompts()
 
 
 def login_menu():
+    """login_menu function is used to display the login menu and authenticate the user"""
     user_input = None
     while user_input != '2':
-        print("Hello Welcome to Park+!! Choose from the options below - ")
-        print("1) Login")
-        print("2) Exit")
+        print(prompts["menu"]["LOGIN_VIEW"])
 
         user_input = input("Your Choice - ")
         if user_input == '1':
@@ -26,7 +30,7 @@ def login_menu():
                 Menu(user_data, db)
 
             except Exception as e:
-                logger.debug(e)
+                logger.debug(traceback.print_exc())
                 print(e)
 
 

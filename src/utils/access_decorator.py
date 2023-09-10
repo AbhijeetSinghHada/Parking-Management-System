@@ -1,8 +1,7 @@
 import functools
 from src.configurations.config import action_role_mapping
 from src.helpers.errors import AccessDenied
-import logging
-logger = logging.getLogger(__name__)
+
 
 def access_identifier(function):
     @functools.wraps(function)
@@ -14,6 +13,9 @@ def access_identifier(function):
         raise AccessDenied("\nYour Role Do not Have Access to this Function.\n")
 
     return access_function
+
+
+
 
 if __name__ == '__main__':
     print('')

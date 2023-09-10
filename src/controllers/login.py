@@ -1,7 +1,7 @@
 import hashlib
 from src.helpers.errors import AuthenticationError
 from src.helpers import input_and_validation, helpers
-
+prompts = helpers.get_prompts()
 
 class Login:
     def __init__(self, db):
@@ -30,7 +30,8 @@ class Login:
         if data:
             self.user_id = data[0][0]
             return self.user_id
-        raise AuthenticationError('Invalid Login Details')
+
+        raise AuthenticationError(prompts["prompts"]["INVALID_DETAILS"])
 
     @staticmethod
     def get_hashed_password(password):
@@ -39,5 +40,4 @@ class Login:
 
 
 if __name__ == '__main__':
-    ls = Login.get_hashed_password('1234Kittu')
-    print(ls)
+    print("Hello")
