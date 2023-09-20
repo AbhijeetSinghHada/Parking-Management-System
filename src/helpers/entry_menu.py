@@ -156,7 +156,7 @@ class Menu:
         if new_capacity < int(attributes[1]) and parking_space.are_vehicles_already_parked(parking_category,
                                                                                            new_capacity):
             raise ValueError("First Remove Vehicles From Parking Space Range")
-        parking_space.update_parking_space(new_capacity, parking_category)
+        parking_space.update_parking_capacity(new_capacity, parking_category)
 
     @access_identifier
     def unassign_slot(self):
@@ -179,6 +179,7 @@ class Menu:
                 billing.print_bill(bill)
                 slot = Slot(self.db_helper)
                 slot.unassign_slot(slot_id)
+                return
         print("Vehicle do not have any assigned slot.")
 
     @access_identifier
@@ -249,7 +250,7 @@ class Menu:
         if choice == 3:
             return Menu.driver_update_parking_space
         if choice == 4:
-            return Menu.update_parking_charges
+            return Menu.update_parking_charges 
         if choice == 5:
             return Menu.ban_slot
         if choice == 6:
