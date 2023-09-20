@@ -1,50 +1,70 @@
 import unittest
-from unittest.mock import MagicMock, patch
-from src.controllers.slot import Slot
-from src.helpers import helpers
-from src.models.database import Database
+
+import datetime
+from unittest import mock
+from unittest.mock import Mock, MagicMock
+
+from src.controllers.billing import Billing
 
 
-class TestSlot(unittest.TestCase):
+class TestBilling(unittest.TestCase):
 
     def setUp(self):
-        self.db = MagicMock()
-        self.slot = Slot(self.db)
-        self.sql_queries = helpers.get_sql_queries()
+        self.db_helper = Mock()
+        self.billing = Billing(self.db_helper)
 
-    def test_ban_slot(self):
-        with patch('builtins.input', side_effect=['2', '1']):
-            self.slot.fetch_vehicle_types = MagicMock(
-                return_value=[('LMV',), ('HMV',), ('Bike',), ('Cycle',)])
-            self.slot.all_slots_data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-            self.slot.display_slot_table_by_category = MagicMock()
+    def test_calculate_charges_hours_more_than_zero(self):
+        return_value = self.billing.calculate_charges(20, 12)
+        self.assertEquals(return_value, 240)
+        return_value = self.billing.calculate_charges(0, 12)
+        self.assertEquals(return_value, 0)
 
-            self.slot.check_input_in_range = MagicMock(side_effect=[2, 1])
-            self.slot.check_if_slot_already_occupied = MagicMock()
+    def test_calculate_charges_hours_zero(self):
+        return_value = self.billing.calculate_charges(20, 0)
+        self.assertEquals(return_value, 20)
 
-            self.slot.ban_slot()
+    def test_calculate_charges_hours_less_than_zero(self):
+        return_value = self.billing.calculate_charges(40, -2)
+        self.assertEquals(return_value, 40)
 
-            self.assertEqual(self.slot.slot_number, 1)
-            self.slot.check_input_in_range(
-                'Select Vehicle Type To Ban Slot: ', 4)
-            self.slot.display_slot_table_by_category.assert_called_with('HMV')
-            self.slot.check_input_in_range('Enter Slot Number : ', 2)
-            self.slot.check_if_slot_already_occupied.assert_called()
-            patch('self.db.update_item', side_effect=[(self.sql_queries["ban_slot"], (1, 'HMV'))])
+    @mock.patch("src.helpers.helpers.return_date_time_combined")
+    def test_generate_bill_with_existing_id(self, mock_helper):
+        mock_data = [(12, 1, 'Ram', 'ram@gmail.com', '1234567899', 'RJ20CD7259',
+                      'LMV', datetime.date(2023, 9, 11), datetime.timedelta(seconds=36900), 25)]
+        self.db_helper.get_billing_details.return_value = mock_data
+        mock_helper.return_value = datetime.datetime(2023, 9, 11, 10, 16)
+        bill_id = 1
+        bill = self.billing.generate_bill(bill_id)
 
-    def test_unban_slot(self):
-        with patch('builtins.input', side_effect=['1']):
-            self.slot.view_ban_slots = MagicMock(
-                return_value=[(1, 1, 'HMV'), (2, 2, 'LMV')])
-            self.slot.check_input_in_range = MagicMock(return_value=1)
-            self.db.update_item = MagicMock()
-            self.slot.unban_slot()
-            self.slot.view_ban_slots.assert_called()
-            self.slot.check_input_in_range(
-                'Enter Slot Number Index to Unban : ', 2)
-            self.db.update_item(self.sql_queries["unban_slot"], (1, 'HMV'))
+        # Assertions to check if the function returns the expected result
+        expected_bill = [12, 1, 'Ram', 'ram@gmail.com', '1234567899',
+                         'RJ20CD7259', 'LMV', datetime.datetime(2023, 9, 11, 10, 15), 25]
+        self.assertEqual(bill, expected_bill)
 
+    def test_generate_bill_with_non_existing_id(self):
+        # Mock the behavior of db_helper.get_billing_details to return None
+        self.db_helper.get_billing_details.return_value = None
+
+        bill_id = 999  # Replace with a non-existent bill_id for testing
+        with self.assertRaises(LookupError):
+            self.billing.generate_bill(bill_id)
+
+    def test_update_bill_table(self):
+        self.db_helper.parked_time_elapsed_in_hours.return_value = 12
+        self.billing.calculate_charges = MagicMock(return_value=240)
+        self.billing.update_bill_table(1, 20)
+        self.db_helper.update_billing_table.return_value = None
+
+        response = self.db_helper.update_billing_table(1, 240, 1)
+        self.assertEqual(response, None)
+
+    def test_insert_into_bill_table(self):
+        self.db_helper.insert_into_billing_table.return_value = None
+        response = self.db_helper.insert_into_billing_table(
+            "RJ20CD7259", "2023-09-11", "10:15:00")
+        self.assertEqual(response, None)
 
 
 if __name__ == '__main__':
+
     unittest.main()

@@ -26,12 +26,6 @@ class Database:
         self.cursor = Database.cursor
         self._last = None
 
-    def get_item(self, query, *args):
-        self.cursor.execute(query, *args)
-        item = self.cursor.fetchone()
-        logger.debug("get_item called with params {} returned item : {}, ".format( args, item))
-        return item
-
     def get_multiple_items(self, query, *args):
         self.cursor.execute(query, *args)
         items = self.cursor.fetchall()

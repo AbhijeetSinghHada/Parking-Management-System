@@ -1,0 +1,414 @@
+openapi: 3.1.0
+info:
+  title: Park+ Parking Management System
+  description: Parking App in which you can park your vehicle, get bill when you leave, admins can ban slots, update parking charges and capacity and much more..
+  version: 1.0.0
+
+servers:
+  - url: https://parkplus/api/v1
+tags:
+  - name: vehicles
+    description: Everything about your Vehicle
+  - name: slots
+    description: Access to Parking Slot
+  - name: parkingspace
+    description: Operations about Parking Space
+paths:
+  /vehicles:
+    post:
+      tags:
+        - vehicles
+      summary: Add a new Vehicle to the System
+      description: Add a new Vehicle to the System
+      operationId: add_vehicle
+      requestBody:
+        description: Add a new Vehicle to the System
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/vehicle'
+
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/vehicle'
+        '405':
+          description: Invalid input
+  /slots:
+    get:
+      tags:
+        - slots
+      summary: Get Slots Data by Vehicle Category
+      description: Get Slots Data by Vehicle Category
+      operationId: display_slot_table_by_category
+      parameters:
+      - in: query
+        name: category
+        schema:
+          type: string
+          example: LMV 
+      
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    slot_id:
+                      type: integer
+                    status:
+                      type: string
+                      enum: [occupied, not occupied]
+                examples: [[{slot_id: 1, status: occupied},{slot_id: 2, status: not occupied}]]
+        '405':
+          description: Invalid input
+
+    post:
+      tags:
+        - slots
+      summary: Add a new Slot to the System
+      description: Add a new Slot to the System
+      operationId: assign_slot
+      requestBody:
+        description: Add a new Slot to the System
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - slot_id
+                - vehicle_number
+                - vehicle_type
+              properties:
+                slot_id:
+                  type: integer
+                  format: int64
+                  examples: [10]
+                vehicle_type:
+                  type: string
+                  examples: [LMV]
+                vehicle_number:
+                  type: string
+                  examples: [RJ20CD7259]
+
+        required: true
+      responses:
+        '200':
+          description: successful operation
+
+        '400':
+          description: Invalid value
+    delete:
+      tags:
+        - slots
+      summary: Add a new Slot to the System
+      description: Add a new Slot to the System
+      operationId: unassign_slot
+      parameters:
+      - in: query
+        name: vehicle_number
+        schema:
+          type: string
+          example: RJ20CD7259
+        required: true
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  slot:
+                    type: object
+                    properties:
+                      slot_number: 
+                        type: integer
+                        format: int64
+                        examples: [10]
+                      vehicle_type:
+                        type: string
+                        examples: [LMV]
+                      vehicle_number:
+                        type: string
+                        examples: [RJ20CD7259]
+                  bill:
+                    type: object
+                    properties:
+                      customer: 
+                        $ref: '#/components/schemas/customer'
+                      time_in : 
+                        type: string
+                        example: 2023-09-13 01:43:00
+                      time_out:
+                        type: string
+                        example: 2023-09-13 03:43:00
+
+                      total_charges: 
+                        type: integer
+                        example: 200
+        
+        '400':
+          description: Invalid value
+  /slots/ban:
+    get:
+      tags:
+        - slots
+      summary: Get Slots Data by Vehicle Category
+      description: Get Slots Data by Vehicle Category
+      operationId: view_ban_slots
+      
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    slot_id:
+                      type: integer
+                    slot_type:
+                      type: string
+                examples: [[{slot_id: 1, slot_type: LMV},{slot_id: 1, slot_type: HMV},{slot_id: 2, slot_type: HMV}]]
+        '404':
+          description: Resource Not Found
+
+    post:
+      tags:
+        - slots
+      summary: Ban a Slot
+      description: Ban a Slot
+      operationId: ban_slot
+      requestBody:
+        description: Ban a Slot
+        content:
+          application/json:
+            schema:
+              type: object
+              required: 
+                - slot_id
+                - slot_type
+              properties:
+                slot_id:
+                  type: integer
+                  format: int64
+                  examples: [10]
+                slot_type:
+                  type: string
+                  examples: [LMV]
+
+        required: true
+      responses:
+        '200':
+          description: successful operation
+
+        '400':
+          description: Invalid value
+    delete:
+      tags:
+        - slots
+      summary: Un-Ban a Slot
+      description: Un-Ban a Slot
+      operationId: unban_slot
+      parameters:
+      - in: query
+        name: slot_id
+        schema:
+          type: integer
+          format: int64
+          example: 1
+        required: true
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+                example: OK
+
+        '403':
+          description: Invalid value
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Invalid Slot ID
+
+  /parkingspace:
+    post:
+      tags:
+        - parkingspace
+      summary: Add Parking Category
+      description: Multiple Category values can be provided
+      operationId: add_vehicle_category
+      requestBody:
+        description: Add a new Parking Category to the System
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/parkingspace'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/parkingspace'
+        '400':
+          description: Invalid value
+    put:
+      tags:
+        - parkingspace
+      summary: Update Parking Category Attributes
+      description: one or both attributes to be provided
+      operationId: update_parking_charges, update_parking_capacity 
+      parameters:
+      - in: query
+        name: category
+        schema:
+          type: string
+          example: LMV 
+
+      requestBody:
+        description: Update Parking Category Attributes
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                capacity:
+                  type: integer
+                  format: int64
+                  examples: [20]
+                charge:
+                  type: integer
+                  format: int64
+                  examples: [100]
+
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/parkingspace_attributes'
+        '400':
+          description: Invalid value
+
+    
+
+components:
+  schemas:
+    slot:
+      type: object
+      properties:
+        slot_id:
+          type: integer
+          format: int64
+          examples: [10]
+        vehicle_type:
+          type: array
+          examples: [LMV]
+
+    customer:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          examples: [1]
+        name:
+          type: string
+          examples: [Kittu]
+        email_address:
+          type: string
+          examples: [kittu@gmail.com]
+        phone_number:
+          type: integer
+          format: int64
+          examples: [7878893926]
+
+    vehicle:
+      type: object
+      properties:
+        vehicle_number:
+          type: string
+          examples: [RJ20CD7259]
+        vehicle_type:
+          type: string
+          examples: [LMV]
+        customer:
+          $ref : '#/components/schemas/customer'
+      xml:
+        name: vehicle
+    parkingspace:
+      type: array
+      items:
+          type: object
+          $ref: '#/components/schemas/parkingspace_attributes'
+          examples: [
+                      {type: 'LMV',capacity: 20,charge: 100},{type: 'HMV',capacity: 10,charge: 300}
+                    ]
+      xml:
+        name: parkingspace
+    parkingspace_attributes:
+      required:
+        - slot_type
+      type: object
+      properties:
+        slot_type:
+          type: string
+          examples: [LMV]
+        capacity:
+          type: integer
+          format: int64
+          examples: [20]
+        charge:
+          type: integer
+          format: int64
+          examples: [100]
+      xml:
+        name: parkingspace_attributes
+
+    
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+      xml:
+        name: '##default'
+  requestBodies:
+    vehicle:
+      description: vehicle object that needs to be added to the system
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/vehicle'
+    slot:
+      description: slot object that needs to be added to the system
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/slot'

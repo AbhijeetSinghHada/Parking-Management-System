@@ -20,18 +20,18 @@ class Login:
 
     def fetch_user_roles(self):
         self.user_data = self.db.get_multiple_items(
-            self.sql_queries["fetch_user_details"], (self.user_id,))
+            self.sql_queries.get("fetch_user_details"), (self.user_id,))
         self.user_data = helpers.convert_user_details_to_dict(self.user_data)
         return self.user_data
 
     def authenticate(self):
         data = self.db.get_multiple_items(
-            self.sql_queries["fetch_login_details"], (self.username, self.password))
+            self.sql_queries.get("fetch_login_details"), (self.username, self.password))
         if data:
             self.user_id = data[0][0]
             return self.user_id
 
-        raise AuthenticationError(prompts["prompts"]["INVALID_DETAILS"])
+        raise AuthenticationError(prompts.get("prompts").get("INVALID_DETAILS"))
 
     @staticmethod
     def get_hashed_password(password):
@@ -40,4 +40,4 @@ class Login:
 
 
 if __name__ == '__main__':
-    print("Hello")
+    Login.get_hashed_password("Abhi2233")

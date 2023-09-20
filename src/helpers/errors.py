@@ -6,3 +6,4 @@ class DuplicateEntry(ValueError):
 
 class AuthenticationError(ValueError):
     pass
+

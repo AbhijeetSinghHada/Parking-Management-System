@@ -1,9 +1,7 @@
 """Main module to run the application"""
 import logging
-import traceback
-
 from src.controllers.login import Login
-from src.controllers.menu import Menu
+from src.helpers.entry_menu import Menu
 from src.helpers.helpers import get_prompts
 from src.models.database import Database
 logging.basicConfig(level=logging.DEBUG,
@@ -18,7 +16,7 @@ def login_menu():
     """login_menu function is used to display the login menu and authenticate the user"""
     user_input = None
     while user_input != '2':
-        print(prompts["menu"]["LOGIN_VIEW"])
+        print(prompts.get("menu").get("LOGIN_VIEW"))
 
         user_input = input("Your Choice - ")
         if user_input == '1':
@@ -30,7 +28,7 @@ def login_menu():
                 Menu(user_data, db)
 
             except Exception as e:
-                logger.debug(traceback.print_exc())
+                logger.debug(e)
                 print(e)
 
 

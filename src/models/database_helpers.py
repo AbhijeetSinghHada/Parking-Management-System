@@ -132,7 +132,6 @@ class DatabaseHelper:
 
     def remove_parked_slot(self, slot_id):
         logger.debug(f"remove_parked_slot called with params {slot_id}")
-
         try:
             self.db.update_item(
                 self.sql_queries.get("delete_parked_slot"), (slot_id,))

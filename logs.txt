@@ -127,3 +127,81 @@ No Banned Slots.
 2023-09-11 00:39:48,730 - src.models.database - DEBUG - get_multiple_item called with params (('RJ20CD7259', '', ''),) returned item : [(1, 'Ram', 'ram@gmail.com', '1234567899', 'RJ20CD7259', 'LMV')] 
 2023-09-11 00:39:48,730 - src.controllers.vehicle - DEBUG - set_vehicle_customer_data called with params [(1, 'Ram', 'ram@gmail.com', '1234567899', 'RJ20CD7259', 'LMV')]
 2023-09-11 00:39:48,731 - src.controllers.vehicle - DEBUG - print_vehicle_details called with params [(1, 'Ram', 'ram@gmail.com', '1234567899', 'RJ20CD7259', 'LMV')]
+2023-09-11 09:31:33,493 - src.models.database - DEBUG - Connection established
+2023-09-11 09:31:38,530 - src.models.database - DEBUG - get_multiple_item called with params (('abhi', '91301e05e44406c12a4626a2382df30b04543c0561e10f5471f24c0928645109'),) returned item : [(1, 'abhi', '91301e05e44406c12a4626a2382df30b04543c0561e10f5471f24c0928645109', 1)] 
+2023-09-11 09:31:38,530 - src.models.database - DEBUG - get_multiple_item called with params ((1,),) returned item : [('Abhijeet Singh', 1, 1), ('Abhijeet Singh', 1, 2)] 
+2023-09-11 09:31:38,530 - src.helpers.helpers - DEBUG - convert_user_details_to_dict called with params [('Abhijeet Singh', 1, 1), ('Abhijeet Singh', 1, 2)]
+2023-09-11 10:15:23,369 - src.models.database - DEBUG - Connection established
+2023-09-11 10:15:29,302 - src.models.database - DEBUG - get_multiple_item called with params (('abhi', '91301e05e44406c12a4626a2382df30b04543c0561e10f5471f24c0928645109'),) returned item : [(1, 'abhi', '91301e05e44406c12a4626a2382df30b04543c0561e10f5471f24c0928645109', 1)] 
+2023-09-11 10:15:29,310 - src.models.database - DEBUG - get_multiple_item called with params ((1,),) returned item : [('Abhijeet Singh', 1, 1), ('Abhijeet Singh', 1, 2)] 
+2023-09-11 10:15:29,310 - src.helpers.helpers - DEBUG - convert_user_details_to_dict called with params [('Abhijeet Singh', 1, 1), ('Abhijeet Singh', 1, 2)]
+2023-09-11 10:15:35,946 - src.models.database_helpers - DEBUG - get_vehicle_category_data called
+2023-09-11 10:15:35,946 - src.models.database - DEBUG - get_multiple_item called with params () returned item : [('LMV', 10, 25), ('HMV', 7, 50), ('Bike', 5, 15)] 
+2023-09-11 10:15:37,803 - src.controllers.slot - DEBUG - display_slot_table_by_category called with params LMV
+2023-09-11 10:15:37,803 - src.models.database_helpers - DEBUG - get_slots_data called
+2023-09-11 10:15:37,805 - src.models.database - DEBUG - get_multiple_item called with params () returned item : [] 
+2023-09-11 10:15:37,805 - src.models.database_helpers - DEBUG - get_parking_capacity called with params LMV
+2023-09-11 10:15:39,152 - src.controllers.slot - DEBUG - check_if_slot_already_occupied called with params 1, LMV
+2023-09-11 10:15:39,152 - src.models.database_helpers - DEBUG - get_slots_data called
+2023-09-11 10:15:44,109 - src.models.database_helpers - DEBUG - get_slots_data called
+2023-09-11 10:15:44,109 - src.controllers.vehicle - DEBUG - check_if_vehicle_exists called with params RJ20CD7259
+2023-09-11 10:15:44,110 - src.models.database_helpers - DEBUG - get_vehicle_data called with params RJ20CD7259,,
+2023-09-11 10:15:44,111 - src.models.database - DEBUG - get_multiple_item called with params (('RJ20CD7259', '', ''),) returned item : [(1, 'Ram', 'ram@gmail.com', '1234567899', 'RJ20CD7259', 'LMV')] 
+2023-09-11 10:15:44,111 - src.controllers.vehicle - DEBUG - set_vehicle_customer_data called with params [(1, 'Ram', 'ram@gmail.com', '1234567899', 'RJ20CD7259', 'LMV')]
+2023-09-11 10:15:44,111 - src.controllers.vehicle - DEBUG - set_vehicle_customer_data called with params [(1, 'Ram', 'ram@gmail.com', '1234567899', 'RJ20CD7259', 'LMV')]
+2023-09-11 10:15:44,114 - src.models.database_helpers - DEBUG - insert_into_billing_table called with params RJ20CD7259,2023-09-11,10:15
+2023-09-11 10:15:44,114 - src.models.database - DEBUG - update_item called with params (('RJ20CD7259', datetime.date(2023, 9, 11), '10:15'),) returned item : 12, 
+2023-09-11 10:15:44,114 - src.controllers.slot - DEBUG - assign_slot called
+2023-09-11 10:15:44,114 - src.models.database_helpers - DEBUG - insert_into_slot_table called with params 1,RJ20CD7259,LMV
+2023-09-11 10:15:44,124 - src.models.database - DEBUG - update_item called with params ((1, 'RJ20CD7259', 'LMV'),) returned item : 47, 
+2023-09-11 10:16:01,133 - src.models.database_helpers - DEBUG - get_slots_data called
+2023-09-11 10:16:01,135 - src.models.database - DEBUG - get_multiple_item called with params () returned item : [(1, 1, 'LMV', 2, 12, 'RJ20CD7259', 25, 47)] 
+2023-09-11 10:16:01,135 - src.controllers.billing - DEBUG - generate_bill called with params 12
+2023-09-11 10:16:01,135 - src.models.database_helpers - DEBUG - parked_time_elapsed_in_hours called with params 12
+2023-09-11 10:16:01,137 - src.models.database - DEBUG - get_multiple_item called with params ((12,),) returned item : [(datetime.date(2023, 9, 11), datetime.timedelta(seconds=36900))] 
+2023-09-11 10:16:01,138 - src.controllers.billing - DEBUG - calculate_charges called with params 25,0
+2023-09-11 10:16:01,138 - src.models.database_helpers - DEBUG - update_billing_table called with params 2023-09-11 10:16,25,12
+2023-09-11 10:16:01,138 - src.models.database - DEBUG - update_item called with params (('2023-09-11 10:16', 25, 12),) returned item : 0, 
+2023-09-11 10:16:01,138 - src.controllers.billing - DEBUG - generate_bill called with params 12
+2023-09-11 10:16:01,138 - src.models.database_helpers - DEBUG - get_billing_details called with params 12
+2023-09-11 10:16:01,138 - src.models.database - DEBUG - get_multiple_item called with params ((12,),) returned item : [(12, 1, 'Ram', 'ram@gmail.com', '1234567899', 'RJ20CD7259', 'LMV', datetime.date(2023, 9, 11), datetime.timedelta(seconds=36900), datetime.datetime(2023, 9, 11, 10, 16), 25)] 
+2023-09-11 10:16:01,138 - src.controllers.billing - DEBUG - _print_bill called with params [12, 1, 'Ram', 'ram@gmail.com', '1234567899', 'RJ20CD7259', 'LMV', datetime.datetime(2023, 9, 11, 10, 15), datetime.datetime(2023, 9, 11, 10, 16), 25]
+2023-09-11 10:16:01,138 - src.controllers.slot - DEBUG - unassign_slot called with params 47
+2023-09-11 10:16:01,138 - src.models.database_helpers - DEBUG - remove_parked_slot called with params 47
+2023-09-11 10:16:01,146 - src.models.database - DEBUG - update_item called with params ((47,),) returned item : 0, 
+2023-09-11 23:31:55,957 - src.models.database - DEBUG - Connection established
+2023-09-11 23:32:01,355 - src.models.database - DEBUG - get_multiple_item called with params (('abhi', '06e8c44c7b02ea426e8e98547aaaa2686785a1a8e8044ee0dca867d7c73c6ee5'),) returned item : [] 
+2023-09-11 23:32:01,357 - __main__ - DEBUG - Invalid Login Details
+2023-09-20 14:50:26,188 - src.models.database - DEBUG - Connection established
+2023-09-20 14:50:32,001 - src.models.database - DEBUG - get_multiple_item called with params (('abhi', 'f2847d422b8ee9074f696e052f17ef1fb9833a442086b496bd8f8ea9c1c9a311'),) returned item : [] 
+2023-09-20 14:50:32,001 - __main__ - DEBUG - Invalid Login Details
+2023-09-20 14:50:45,808 - src.models.database - DEBUG - get_multiple_item called with params (('abhi', '30e900c9ebd092ed14cc71216130173d2ffd11536165376457a45ca2903402d3'),) returned item : [] 
+2023-09-20 14:50:45,808 - __main__ - DEBUG - Invalid Login Details
+2023-09-20 14:51:18,485 - src.models.database - DEBUG - get_multiple_item called with params (('abhi', '33e0799980601e01cb55edf92c47bf9c0d947377038dbae898796e3fefc0113a'),) returned item : [] 
+2023-09-20 14:51:18,485 - __main__ - DEBUG - Invalid Login Details
+2023-09-20 14:51:29,043 - src.models.database - DEBUG - get_multiple_item called with params (('abhi', '30e900c9ebd092ed14cc71216130173d2ffd11536165376457a45ca2903402d3'),) returned item : [] 
+2023-09-20 14:51:29,043 - __main__ - DEBUG - Invalid Login Details
+2023-09-20 14:51:39,465 - src.models.database - DEBUG - get_multiple_item called with params (('kittu', '63c5706daaa70541cc134b101e9a3d616f744bd39fa60b1a000b9f07bf508465'),) returned item : [] 
+2023-09-20 14:51:39,465 - __main__ - DEBUG - Invalid Login Details
+2023-09-20 14:52:24,802 - src.models.database - DEBUG - get_multiple_item called with params (('abhi', '91301e05e44406c12a4626a2382df30b04543c0561e10f5471f24c0928645109'),) returned item : [(1, 'abhi', '91301e05e44406c12a4626a2382df30b04543c0561e10f5471f24c0928645109', 1)] 
+2023-09-20 14:52:24,822 - src.models.database - DEBUG - get_multiple_item called with params ((1,),) returned item : [('Abhijeet Singh', 1, 1), ('Abhijeet Singh', 1, 2)] 
+2023-09-20 14:52:24,822 - src.helpers.helpers - DEBUG - convert_user_details_to_dict called with params [('Abhijeet Singh', 1, 1), ('Abhijeet Singh', 1, 2)]
+2023-09-20 14:52:39,451 - src.models.database_helpers - DEBUG - get_vehicle_category_data called
+2023-09-20 14:52:39,451 - src.models.database - DEBUG - get_multiple_item called with params () returned item : [('LMV', 10, 25), ('HMV', 7, 50), ('Bike', 5, 15)] 
+2023-09-20 14:52:41,355 - src.controllers.slot - DEBUG - display_slot_table_by_category called with params LMV
+2023-09-20 14:52:41,355 - src.models.database_helpers - DEBUG - get_slots_data called
+2023-09-20 14:52:41,355 - src.models.database - DEBUG - get_multiple_item called with params () returned item : [] 
+2023-09-20 14:52:41,355 - src.models.database_helpers - DEBUG - get_parking_capacity called with params LMV
+2023-09-20 14:52:43,585 - src.controllers.slot - DEBUG - check_if_slot_already_occupied called with params 1, LMV
+2023-09-20 14:52:43,585 - src.models.database_helpers - DEBUG - get_slots_data called
+2023-09-20 14:52:51,205 - src.models.database_helpers - DEBUG - get_slots_data called
+2023-09-20 14:52:51,205 - src.controllers.vehicle - DEBUG - check_if_vehicle_exists called with params RJ20CD7259
+2023-09-20 14:52:51,205 - src.models.database_helpers - DEBUG - get_vehicle_data called with params RJ20CD7259,,
+2023-09-20 14:52:51,222 - src.models.database - DEBUG - get_multiple_item called with params (('RJ20CD7259', '', ''),) returned item : [(1, 'Ram', 'ram@gmail.com', '1234567899', 'RJ20CD7259', 'LMV')] 
+2023-09-20 14:52:51,222 - src.controllers.vehicle - DEBUG - set_vehicle_customer_data called with params [(1, 'Ram', 'ram@gmail.com', '1234567899', 'RJ20CD7259', 'LMV')]
+2023-09-20 14:52:51,222 - src.controllers.vehicle - DEBUG - set_vehicle_customer_data called with params [(1, 'Ram', 'ram@gmail.com', '1234567899', 'RJ20CD7259', 'LMV')]
+2023-09-20 14:52:51,222 - src.models.database_helpers - DEBUG - insert_into_billing_table called with params RJ20CD7259,2023-09-20,14:52
+2023-09-20 14:52:51,222 - src.models.database - DEBUG - update_item called with params (('RJ20CD7259', datetime.date(2023, 9, 20), '14:52'),) returned item : 14, 
+2023-09-20 14:52:51,222 - src.controllers.slot - DEBUG - assign_slot called
+2023-09-20 14:52:51,222 - src.models.database_helpers - DEBUG - insert_into_slot_table called with params 1,RJ20CD7259,LMV
+2023-09-20 14:52:51,234 - src.models.database - DEBUG - update_item called with params ((1, 'RJ20CD7259', 'LMV'),) returned item : 50, 

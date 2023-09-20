@@ -12,7 +12,7 @@ class ParkingSpace(Slot):
     def __init__(self, db_helper):
         self.db_helper = db_helper
 
-    def update_parking_space(self, new_capacity, parking_category):
+    def update_parking_capacity(self, new_capacity, parking_category):
         logger.debug("update_parking_space called, params - vehicle type : {}, new_capacity : {} ".format(
             parking_category, new_capacity))
         self.db_helper.update_parking_capacity(new_capacity, parking_category)
