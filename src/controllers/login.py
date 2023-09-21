@@ -1,22 +1,18 @@
 import hashlib
+import logging
 from src.helpers.errors import AuthenticationError
 from src.helpers import input_and_validation, helpers
 prompts = helpers.get_prompts()
 
 class Login:
-    def __init__(self, db):
-        self.username = None
-        self.password = None
+    def __init__(self, db, username, password):
+        self.username = username
+        self.password = Login.get_hashed_password(password)
         self.user_id = None
         self.user_data = None
         self.db = db
         self.sql_queries = helpers.get_sql_queries()
-        self.__get_user_credentials()
-
-    def __get_user_credentials(self):
-        self.username = input_and_validation.get_username_input()
-        password = input_and_validation.input_validate_password()
-        self.password = self.get_hashed_password(password)
+        
 
     def fetch_user_roles(self):
         self.user_data = self.db.get_multiple_items(

@@ -33,13 +33,17 @@ class Billing:
         if not data:
             logger.critical(prompts["prompts"]["BILL_ID_NOT_EXISTS"])
             raise LookupError(prompts["prompts"]["BILL_ID_NOT_EXISTS"])
-
         bill = list(data[0])
         _date = bill[7]
         _time = bill[8]
         date_time = return_date_time_combined(_date, _time)
         bill[8] = date_time
         bill.pop(7)
+        bill = {"customer" : {"cutomer_id": bill[1], "name": bill[2], "email_address": bill[3], "phone_number": bill[4]},
+                "time_in": bill[7],
+                "time_out": bill[8],
+                "total_charges": bill[9]}
+
         return bill
 
     def update_bill_table(self, bill_id, charges):

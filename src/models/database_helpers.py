@@ -1,4 +1,5 @@
 import logging
+import traceback
 from src.helpers.helpers import get_sql_queries, return_no_of_hours_elapsed
 
 logger = logging.getLogger(__name__)
@@ -10,16 +11,12 @@ class DatabaseHelper:
         self.sql_queries = get_sql_queries()
         self.slots_data = None
         self.vehicle_category_data = None
-        self.category_update_flag = False
-        self.slot_update_flag = False
 
     def get_slots_data(self):
         logger.debug("get_slots_data called")
         try:
-            if self.slots_data is None or self.slot_update_flag is True:
-                self.slots_data = self.db.get_multiple_items(
+            self.slots_data = self.db.get_multiple_items(
                     self.sql_queries.get("slot_data"))
-                self.slot_update_flag = False
             return self.slots_data
         except Exception as exc:
             raise ResourceWarning("Cannot Fetch Slot Data.") from exc
@@ -27,10 +24,8 @@ class DatabaseHelper:
     def get_parking_capacity(self, vehicle_type):
         logger.debug(f"get_parking_capacity called with params {vehicle_type}")
         try:
-            if self.vehicle_category_data is None or self.category_update_flag is True:
-                self.vehicle_category_data = self.db.get_multiple_items(
+            self.vehicle_category_data = self.db.get_multiple_items(
                     self.sql_queries.get("vehicle_category_data"))
-                self.category_update_flag = False
             for i in self.vehicle_category_data:
                 if i[0] == vehicle_type:
                     return i[1]
@@ -41,15 +36,12 @@ class DatabaseHelper:
         logger.debug("get_vehicle_category_data called")
 
         try:
-            if self.vehicle_category_data is None or self.category_update_flag is True:
-                self.vehicle_category_data = self.db.get_multiple_items(
+            self.vehicle_category_data = self.db.get_multiple_items(
                     self.sql_queries.get("vehicle_category_data"))
-                self.category_update_flag = False
             return self.vehicle_category_data
         except Exception as exc:
             raise ResourceWarning(
                 "Cannot Fetch Vehicle Category Data.") from exc
-
     def update_charges(self, charges, vehicle_type):
         logger.debug(
             f"update_charges called with params {charges},{vehicle_type}")
@@ -57,7 +49,7 @@ class DatabaseHelper:
         try:
             self.db.update_item(
                 self.sql_queries.get("update_vehicle_charges"), (charges, vehicle_type))
-            self.category_update_flag = True
+
         except Exception as exc:
             raise ResourceWarning("Cannot Update Charges.") from exc
 
@@ -67,7 +59,6 @@ class DatabaseHelper:
         try:
             self.db.update_item(
                 self.sql_queries.get("update_vehicle_capacity"), (total_capacity, parking_category))
-            self.category_update_flag = True
         except Exception as exc:
             raise ResourceWarning("Cannot Update Parking Capacity.") from exc
 
@@ -76,7 +67,6 @@ class DatabaseHelper:
             self.db.update_item(
                 self.sql_queries.get("add_vehicle_type"),
                 (slot_type, total_capacity, parking_charge))
-            self.category_update_flag = True
         except Exception as exc:
             raise ResourceWarning(
                 "Cannot Add Vehicle to the Database.") from exc
@@ -126,7 +116,6 @@ class DatabaseHelper:
         try:
             self.db.update_item(self.sql_queries.get("insert_into_slot"),
                                 (slot_number, vehicle_number, vehicle_type,))
-            self.slot_update_flag = True
         except Exception as exc:
             raise ResourceWarning("Cannot Add Slot.") from exc
 
@@ -135,7 +124,6 @@ class DatabaseHelper:
         try:
             self.db.update_item(
                 self.sql_queries.get("delete_parked_slot"), (slot_id,))
-            self.slot_update_flag = True
         except Exception as exc:
             raise ResourceWarning("Cannot Remove Parked Slot.") from exc
 
@@ -145,7 +133,6 @@ class DatabaseHelper:
         try:
             self.db.update_item(self.sql_queries.get("ban_slot"),
                                 (slot_number, vehicle_type))
-            self.slot_update_flag = True
         except Exception as exc:
             raise ResourceWarning("Cannot Ban Slot.") from exc
 
@@ -155,7 +142,6 @@ class DatabaseHelper:
         try:
             self.db.update_item(
                 self.sql_queries.get("unban_slot"), (slot_number, slot_type))
-            self.slot_update_flag = True
         except Exception as exc:
             raise ResourceWarning("Cannot Unban Slot.") from exc
 

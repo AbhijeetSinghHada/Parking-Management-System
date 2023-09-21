@@ -12,8 +12,8 @@ class Slot(Vehicle, Billing):
         self.slot_number = None
         self.db_helpers = db_helper
 
-    def display_slot_table_by_category(self, vehicle_type):
-        logger.debug("display_slot_table_by_category called with params {}".format(
+    def get_slot_data_by_slot_type(self, vehicle_type):
+        logger.debug("get_slot_data_by_slot_type called with params {}".format(
             vehicle_type))
         slot_data = self.db_helpers.get_slots_data()
         slot_type_capacity = self.db_helpers.get_parking_capacity(vehicle_type)
@@ -24,10 +24,10 @@ class Slot(Vehicle, Billing):
 
         for i in range(1, int(slot_type_capacity) + 1):
             if i in occupied_slot_numbers:
-                all_slots_data.append([i, 'Occupied'])
+                all_slots_data.append({"slot_id": i, "status": "Occupied"})
                 continue
-            all_slots_data.append([i, 'Not Occupied'])
-        print(tabulate(all_slots_data, headers=['Slot Number', 'Status']))
+            all_slots_data.append({"slot_id": i, "status": "Not Occupied"})
+        return all_slots_data
 
     def assign_slot(self, slot_number, vehicle_number, vehicle_type):
         logger.debug("assign_slot called")
@@ -59,10 +59,9 @@ class Slot(Vehicle, Billing):
     def view_ban_slots(self):
         logger.debug("view_ban_slots called")
         data = self.db_helpers.get_slots_data()
-        data = [(x[0], x[2]) for x in data if x[1] == -1]
+        data = [{"slot_number" : x[0], "vehicle_type" : x[2]} for x in data if x[1] == -1]
         if not data:
             raise ValueError("\nNo Banned Slots.\n")
-        print(tabulate(data, headers=['Slot Number', 'Slot Type'], showindex=range(1, len(data) + 1)))
         return data
 
     def unban_slot(self, slot_number, slot_type):

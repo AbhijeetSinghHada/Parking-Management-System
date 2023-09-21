@@ -41,7 +41,7 @@ create table if not exists parkingmanagement.slot_category
     id int not null auto_increment, 
     slot_type varchar(10) not null, 
     total_capacity int not null, 
-    remaining_capacity int not null,
+    charge int not null,
     primary key (id)
 );
 
@@ -82,21 +82,15 @@ create table if not exists parkingmanagement.slot
     vehicle_id int not null, 
     slot_category_id int not null,
     status_id int not null,
+    billing_id int not null,
     foreign key (vehicle_id) references vehicle(id),
     foreign key (slot_category_id) references slot_category(id), 
     foreign key (status_id) references slot_status(id), 
+    foreign key (billing_id) references billing(id),
     primary key (id)
 );
 
 
-create table if not exists parkingmanagement.charges
-(
-    id int not null auto_increment, 
-    slot_category_id int not null,
-    charge int not null,
-    foreign key (slot_category_id) references slot_category(id), 
-    primary key (id)
-);
 
 create table if not exists parkingmanagement.billing
 (

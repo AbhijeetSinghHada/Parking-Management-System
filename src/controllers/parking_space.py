@@ -18,25 +18,19 @@ class ParkingSpace(Slot):
         self.db_helper.update_parking_capacity(new_capacity, parking_category)
         print("\nParking Capacity Updated Successfully\n")
 
-    def update_parking_charges(self):
-        logger.debug("update_parking_charges called")
-        attributes = self.get_parking_slot_attributes()
-        parking_category = attributes[0]
-        new_charges = input_and_validation.get_int_input(
-            'Enter New Charges : ')
-        logger.debug("update_parking_charges called, params - vehicle type : {}, new_charges : {} ".format(
-            parking_category, new_charges))
+    def update_parking_charges(self, new_charges, parking_category):
+        
         self.db_helper.update_charges(new_charges, parking_category)
         print("\nParking Charges Updated Successfully\n")
 
-    def get_parking_slot_attributes(self):
+    def get_parking_slot_attributes(self, parking_category):
         vehicle_category_data = self.db_helper.get_vehicle_category_data()
-        print(tabulate(vehicle_category_data, headers=[
-              'Slot Type', 'Total Capacity', 'Charges'], showindex=range(1, len(vehicle_category_data)+1)))
-        update_for_index = helpers.check_input_in_range("Enter the Index of Slot Category : ",
-                                                        len(vehicle_category_data))
-        parking_category = vehicle_category_data[update_for_index - 1]
-        return parking_category
+        print(vehicle_category_data)
+        parking_category_data = None
+        for i in vehicle_category_data:
+            if parking_category == i[0]:
+                parking_category_data = i
+        return parking_category_data
 
     def are_vehicles_already_parked(self, parking_category, new_capacity):
         slot_data = self.db_helper.get_slots_data()
