@@ -2,7 +2,7 @@ import json
 from datetime import datetime, date
 import logging
 from src.configurations import config
-from src.helpers import input_and_validation
+from Parking_Management_System.src.helpers import validations
 logger = logging.getLogger(__name__)
 
 
@@ -11,7 +11,8 @@ def convert_user_details_to_dict(lst):
         "convert_user_details_to_dict called with params {}".format(lst))
     user_dict = {'name': lst[0][0],
                  'user_id': lst[0][1],
-                 'roles': [x[2] for x in lst]}
+                 'role': [x[2] for x in lst]}
+    print(user_dict)
     return user_dict
 
 
@@ -32,9 +33,9 @@ def get_sql_queries():
 
 
 def check_input_in_range(message, comparison_category):
-    user_inp = input_and_validation.get_int_input(message)
+    user_inp = validations.get_int_input(message)
     while user_inp > comparison_category or user_inp < 1:
-        user_inp = input_and_validation.get_int_input(
+        user_inp = validations.get_int_input(
             f'Please Enter valid index: ')
     return user_inp
 

@@ -22,6 +22,9 @@ class Vehicle(MethodView):
     @blp.arguments(VehicleSchema)
     def post(self, item):
         jwt = get_jwt()
+        role = jwt.get("role")
+        if "Admin" not in role and "Operator" not in role:
+            abort(401, message="Unauthorized")
         parameters = (item.get("vehicle_number"), item.get("vehicle_type"),item.get("customer").get("customer_id"), item.get("customer").get("name"), item.get("customer").get("email_address"), item.get("customer").get("phone_number")) 
         try:
             data, response = menu_obj.add_vehicle(*parameters)

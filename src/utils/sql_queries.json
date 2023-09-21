@@ -1,6 +1,6 @@
 {
   "fetch_login_details": "SELECT * FROM parkingmanagement.credentials WHERE username = %s and password = %s",
-  "fetch_user_details": "SELECT e.emp_name,e.id,r.id FROM parkingmanagement.employee as e inner join parkingmanagement.role_mapping as m on e.id = m.user_id inner join parkingmanagement.roles as r on m.role_id = r.id where e.id= %s ",
+  "fetch_user_details": "SELECT e.emp_name,e.id,r.role_category FROM parkingmanagement.employee as e inner join parkingmanagement.role_mapping as m on e.id = m.user_id inner join parkingmanagement.roles as r on m.role_id = r.id where e.id= %s ",
   "add_vehicle_type": "INSERT INTO `parkingmanagement`.`slot_category` (`slot_type`, `total_capacity`,`charge`) VALUES (%s,%s,%s)",
   "update_vehicle_capacity": "UPDATE `parkingmanagement`.`slot_category` SET `total_capacity` = %s WHERE `slot_type` = %s",
   "fetch_vehicle_data": "SELECT c.id,c.customer_name,c.email,c.phone_number, v.vehicle_number, s.slot_type FROM parkingmanagement.customer as c inner join parkingmanagement.vehicle as v on c.id = v.customer_id inner join parkingmanagement.slot_category as s on v.slot_category_id = s.id where v.vehicle_number=%s or c.id=%s or c.email=%s;",

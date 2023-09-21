@@ -1,4 +1,5 @@
-from src.helpers import input_and_validation, helpers
+from Parking_Management_System.src.helpers import validations
+from src.helpers import helpers
 
 prompts = helpers.get_prompts()
 
@@ -12,13 +13,13 @@ class Customer:
 
     def get_customer_details(self):
         print("Enter Customer Details : ")
-        self.customer_id = input_and_validation.get_customer_id(
+        self.customer_id = validations.get_customer_id(
             prompts["prompts"]["INPUT_CUSTOMER_ID"])
-        self.name = input_and_validation.get_string_input(
+        self.name = validations.get_string_input(
             prompts["prompts"]["INPUT_CUSTOMER_NAME"])
-        self.email_address = input_and_validation.input_validate_email(
+        self.email_address = validations.input_validate_email(
             prompts["prompts"]["INPUT_EMAIL"])
-        self.phone_number = input_and_validation.input_validate_phone_number(
+        self.phone_number = validations.input_validate_phone_number(
             prompts["prompts"]["INPUT_PHONE"])
 
         return self.customer_id, self.name, self.email_address, self.phone_number

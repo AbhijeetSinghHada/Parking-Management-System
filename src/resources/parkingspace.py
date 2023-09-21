@@ -21,6 +21,9 @@ class ParkingSpace(MethodView):
     @blp.response(200, ListParkingSpaceSchema(many=True))
     def get(self):
         jwt = get_jwt()
+        role = jwt.get("role")
+        if "Admin" not in role and "Operator" not in role:
+            abort(401, message="Unauthorized")
         try:
             parking_spaces = menu_obj.check_parking_capacity()
         except Exception as e:
@@ -32,6 +35,8 @@ class ParkingSpace(MethodView):
     @blp.response(200, ParkingSpaceSchema)
     def put(self, item):
         jwt = get_jwt()
+        if "Admin" not in jwt.get("role"):
+            abort(401, message="Unauthorized")
         try:
             if item.get("total_capacity"):
                 if item.get("total_capacity") < 0:
@@ -50,6 +55,8 @@ class ParkingSpace(MethodView):
     @blp.response(200, ParkingSpaceSchema)
     def post(self, item):
         jwt = get_jwt()
+        if jwt.get("role") != "Admin":
+            abort(401, message="Unauthorized")
         try:
             if item.get("total_capacity") and item.get("charge"):
                 menu_obj.driver_add_vehicle_category(item.get("slot_type"), item.get("total_capacity"), item.get("charge"))

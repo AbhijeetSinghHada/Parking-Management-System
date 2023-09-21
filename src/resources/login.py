@@ -26,6 +26,5 @@ class UserLogin(MethodView):
             abort(401, message="Invalid credentials.")
         else:
             user_data = instance.fetch_user_roles()
-            # {'name': 'Abhijeet Singh', 'user_id': 1, 'roles': [1, 2]}
             access_token = create_access_token(identity=user_data.get("user_id"), additional_claims=user_data)
             return {"access_token": access_token}, 200

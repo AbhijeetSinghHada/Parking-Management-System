@@ -17,7 +17,8 @@ class Slot(Vehicle, Billing):
             vehicle_type))
         slot_data = self.db_helpers.get_slots_data()
         slot_type_capacity = self.db_helpers.get_parking_capacity(vehicle_type)
-
+        if not slot_type_capacity:
+            raise ValueError("No such slot type exists.")
         occupied_slot_numbers = [x[0]
                                  for x in slot_data if x[2] == vehicle_type]
         all_slots_data = []
@@ -33,7 +34,6 @@ class Slot(Vehicle, Billing):
         logger.debug("assign_slot called")
 
         self.db_helpers.insert_into_slot_table(slot_number, vehicle_number, vehicle_type)
-        print("Slot Added Successfully.")
 
     def check_if_slot_already_occupied(self, slot_number, slot_type):
         logger.debug(
@@ -54,21 +54,19 @@ class Slot(Vehicle, Billing):
     def ban_slot(self, slot_number, vehicle_type):
         logger.debug("ban_slot called")
         self.db_helpers.ban_slot_by_slot_number(slot_number, vehicle_type)
-        print("\nSlot Banned Successfully.\n")
 
     def view_ban_slots(self):
         logger.debug("view_ban_slots called")
         data = self.db_helpers.get_slots_data()
         data = [{"slot_number" : x[0], "vehicle_type" : x[2]} for x in data if x[1] == -1]
         if not data:
-            raise ValueError("\nNo Banned Slots.\n")
+            raise ValueError("No Banned Slots.")
         return data
 
     def unban_slot(self, slot_number, slot_type):
         logger.debug("unban_slot called")
 
         self.db_helpers.unban_slot(slot_number, slot_type)
-        print("\nSlot Unbanned Successfully.\n")
 
 
 if __name__ == "__main__":

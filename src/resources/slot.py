@@ -23,6 +23,9 @@ class Slots(MethodView):
     def post(self, item):
         """Assign a slot to a vehicle"""
         jwt = get_jwt()
+        role = jwt.get("role")
+        if "Admin" not in role and "Operator" not in role:
+            abort(401, message="Unauthorized")
         menu_obj = Menu(db)
         try:
             menu_obj.assign_slot(item.get("slot_number"),item.get("vehicle_type"),item.get("vehicle_number"))
@@ -38,6 +41,9 @@ class ListSlots(MethodView):
     @blp.response(200, ListSlotsStatusSchema(many=True))
     def get(self, slot_type):
         jwt = get_jwt()
+        role = jwt.get("role")
+        if "Admin" not in role and "Operator" not in role:
+            abort(401, message="Unauthorized")
         try:
             slots = menu_obj.get_slot_table_by_category(slot_type)
             print(slots)
@@ -51,7 +57,11 @@ class RemoveVehicleFromSlot(MethodView):
     @jwt_required()
     @blp.response(200, RemoveVehicleFromSlot)
     def delete(self, vehicle_number):
+
         jwt = get_jwt()
+        role = jwt.get("role")
+        if "Admin" not in role and "Operator" not in role:
+            abort(401, message="Unauthorized")
         print(vehicle_number)
         try:
             slot_data, bill = menu_obj.unassign_slot(vehicle_number)
@@ -69,6 +79,8 @@ class BanSlot(MethodView):
     @blp.arguments(BanSlotSchema)
     def post(self, item):
         jwt = get_jwt()
+        if jwt.get("role") != "Admin":
+            abort(401, message="Unauthorized")
         try:
             menu_obj.ban_slot(item.get("slot_number"), item.get("vehicle_type"))
         except Exception as e:
@@ -80,6 +92,8 @@ class BanSlot(MethodView):
     @blp.arguments(BanSlotSchema)
     def delete(self, item):
         jwt = get_jwt()
+        if jwt.get("role") != "Admin":
+            abort(401, message="Unauthorized")
         try:
             menu_obj.unban_slot(item.get("slot_number"), item.get("vehicle_type"))
         except Exception as e:
@@ -90,6 +104,8 @@ class BanSlot(MethodView):
     @blp.response(200, ListBannedSlotsSchema(many=True))
     def get(self):
         jwt = get_jwt()
+        if jwt.get("role") != "Admin":
+            abort(401, message="Unauthorized")
         try:
             slots = menu_obj.view_ban_slots()
             print(slots)

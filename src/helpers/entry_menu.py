@@ -1,18 +1,12 @@
-import traceback
-
-from tabulate import tabulate
-
+from Parking_Management_System.src.helpers import errors
 from src.controllers.billing import Billing
 from src.controllers.parking_space import ParkingSpace
-from src.helpers import input_and_validation, errors
-from src.helpers.helpers import get_prompts, check_input_in_range, return_date_and_time
+from src.helpers.helpers import get_prompts, return_date_and_time
 from src.models.database import Database
 from src.models.database_helpers import DatabaseHelper
-from src.utils.access_decorator import access_identifier
 from src.controllers.slot import Slot
 from src.controllers.vehicle import Vehicle
-from src.configurations import config
-from src.helpers.input_and_validation import get_vehicle_number
+from src.helpers import validations
 import logging
 
 logger = logging.getLogger(__name__)
@@ -26,15 +20,16 @@ class Menu:
         self.db_helper = DatabaseHelper(db)
 
     def assign_slot(self, slot_number, vehicle_type, vehicle_number):
-        """This Function is used to assign slot to a vehicle.
-        It takes vehicle number as input and checks if the vehicle exists in the database.
-        If it does not exist, it asks the user if they want to add the vehicle.
-        If the vehicle exists, it checks if the vehicle type matches the slot type.
-        If it does not match, it asks the user to try again.
-        If it matches, it assigns the slot to the vehicle."""
+
+        validations.validate_integer_input(slot_number)
+        validations.validate_string_input(vehicle_type)
+        validations.validate_vehicle_number(vehicle_number)
 
         slot = Slot(self.db_helper)
         parking_space = ParkingSpace(self.db_helper)
+        parking_data = parking_space.get_parking_slot_attributes(vehicle_type)
+        if parking_data[1] < slot_number:
+            raise ValueError("Slot Number Exceeds the Total Capacity")
         slot.check_if_slot_already_occupied(slot_number, vehicle_type)
 
         slots_data = self.db_helper.get_slots_data()
@@ -59,13 +54,18 @@ class Menu:
         slot.assign_slot(slot_number, vehicle_number, vehicle_type)
 
     def get_slot_table_by_category(self, vehicle_type):
-        """This Function is used to display the slots of a particular vehicle category.
-        It takes vehicle category as input and displays the slots of that category."""
 
+        validations.validate_string_input(vehicle_type)
         slot = Slot(self.db_helper)
         return slot.get_slot_data_by_slot_type(vehicle_type)
 
     def add_vehicle(self, vehicle_number, vehicle_type, customer_id,name, email_address, phone_number):
+
+        validations.validate_vehicle_number(vehicle_number)
+        validations.validate_string_input(vehicle_type)
+        validations.validate_string_input(name)
+        validations.validate_email(email_address)
+        validations.validate_phone_number(phone_number)
 
         vehicle = Vehicle(self.db_helper)
         data = vehicle.check_if_vehicle_exists(vehicle_number)
@@ -92,6 +92,10 @@ class Menu:
 
     def driver_add_vehicle_category(self, slot_type, total_capacity, parking_charge):
 
+        validations.validate_string_input(slot_type)
+        validations.validate_integer_input(total_capacity)
+        validations.validate_integer_input(parking_charge)
+
         vehicle = Vehicle(self.db_helper)
         existing_vehicles = self.db_helper.get_vehicle_category_data()
         for i in existing_vehicles:
@@ -104,14 +108,15 @@ class Menu:
         vehicle.add_vehicle_category(slot_type, total_capacity, parking_charge)
 
     def check_parking_capacity(self):
-        """This Function is used to Total parking capacity of the parking lot as well as,
-         charges associated with each type of vehicle category"""
-        print("Functionality : Check Parking Capacity\n")
+
         data = self.db_helper.get_vehicle_category_data()
         vehicle_data = [{"slot_type": i[0], "total_capacity": i[1], "charge": i[2]} for i in data]
         return vehicle_data
 
     def driver_update_parking_space(self, new_capacity, parking_category):
+
+        validations.validate_integer_input(new_capacity)
+        validations.validate_string_input(parking_category)
 
         parking_space = ParkingSpace(self.db_helper)
         attributes = parking_space.get_parking_slot_attributes(parking_category)
@@ -123,8 +128,8 @@ class Menu:
         parking_space.update_parking_capacity(new_capacity, parking_category)
 
     def unassign_slot(self, vehicle_number):
-        """This Function is used to unassign slot for a vehicle.
-        It takes vehicle number as input and unassigns the slot."""
+        
+        validations.validate_vehicle_number(vehicle_number)
 
         slots_data = self.db_helper.get_slots_data()
         for i in slots_data:
@@ -145,12 +150,20 @@ class Menu:
         raise ValueError("Vehicle do not have any assigned slot.")
 
     def ban_slot(self, slot_number, vehicle_type):
+
+        validations.validate_integer_input(slot_number)
+        validations.validate_string_input(vehicle_type)
+
         slot = Slot(self.db_helper)
         parking_space = ParkingSpace(self.db_helper)
         slot.check_if_slot_already_occupied(slot_number, vehicle_type)
         slot.ban_slot(slot_number, vehicle_type)
 
     def unban_slot(self, slot_number, slot_type):
+
+        validations.validate_integer_input(slot_number)
+        validations.validate_string_input(slot_type)
+
         slot = Slot(self.db_helper)
         slot.unban_slot(slot_number, slot_type)
 
@@ -160,6 +173,10 @@ class Menu:
         return data
 
     def update_parking_charges(self, new_charges, parking_category):
+
+        validations.validate_integer_input(new_charges)
+        validations.validate_string_input(parking_category)
+
         parking_space = ParkingSpace(self.db_helper)
         parking_space.update_parking_charges(new_charges, parking_category)
 
