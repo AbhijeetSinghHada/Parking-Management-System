@@ -1,5 +1,7 @@
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 import unittest
-
 import datetime
 from unittest import mock
 from unittest.mock import Mock, MagicMock

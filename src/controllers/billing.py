@@ -1,6 +1,4 @@
 import logging
-import datetime
-
 from src.helpers import helpers
 from src.helpers.helpers import return_date_time_combined, return_current_date_time
 prompts = helpers.get_prompts()
@@ -21,11 +19,6 @@ class Billing:
             total_charges = hours_parked_for * charges
             return total_charges
         return 1 * charges
-
-    @staticmethod
-    def print_bill(bill):
-        logger.debug("_print_bill called with params {}".format(bill))
-        print(prompts["prompts"]["BILL_FORMAT"].format(*bill))
 
     def generate_bill(self, bill_id):
         logger.debug("generate_bill called with params {}".format(bill_id))

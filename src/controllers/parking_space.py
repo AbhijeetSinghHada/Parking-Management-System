@@ -1,6 +1,3 @@
-from tabulate import tabulate
-from Parking_Management_System.src.helpers import validations
-
 from src.controllers.slot import Slot
 from src.helpers import helpers
 import logging
@@ -20,7 +17,7 @@ class ParkingSpace(Slot):
         print("\nParking Capacity Updated Successfully\n")
 
     def update_parking_charges(self, new_charges, parking_category):
-        
+
         self.db_helper.update_charges(new_charges, parking_category)
         print("\nParking Charges Updated Successfully\n")
 
@@ -39,3 +36,9 @@ class ParkingSpace(Slot):
             if i[2] == parking_category and i[0] > new_capacity:
                 return True
         return False
+
+    def check_if_slot_in_range(self, slot_number, parking_category):
+        parking_category_data = self.get_parking_slot_attributes(
+            parking_category)
+        if slot_number > parking_category_data[1]:
+            raise ValueError("Slot Number Exceeds the Total Capacity")

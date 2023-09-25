@@ -1,63 +1,105 @@
-from marshmallow import Schema, fields
+
+customer_schema = {
+    "type" : "object",
+    "properties" : {
+        "customer_id" : {"type" : "integer"},
+        "name" : {"type" : "string"},
+        "email_address" : {"type" : "string"},
+        "phone_number" : {"type" : "integer"}
+    },
+    "required" : ["name", "email_address", "phone_number"]
+}
+
+vehicle_schema = {
+    "type" : "object",
+    "properties" : {
+        "message" : {"type" : "string"},
+        "vehicle_number" : {"type" : "string"},
+        "vehicle_type" : {"type" : "string"},
+        "customer" : customer_schema
+    },
+    "required" : ["vehicle_number", "vehicle_type", "customer"
+                  ]
+}
 
 
-class CustomerSchema(Schema):
-    customer_id = fields.Integer()
-    name = fields.String(required=True)
-    email_address = fields.Email(required=True)
-    phone_number = fields.Integer(required=True)
+slot_status_schema = {
+    "type" : "object",
+    "properties" : {
+        "slot_id" : {"type" : "string"},
+        "status" : {"type" : "string"}
+    }
+}
 
-class VehicleSchema(Schema):
-    message = fields.String(dump_only=True)
-    vehicle_number = fields.String(required=True)
-    vehicle_type = fields.String(required=True)
-    customer = fields.Nested(CustomerSchema, required=True)
+list_slots_status_schema = {
+    "type" : "array",
+    "items" : slot_status_schema
+}
 
+slot_schema = {
+    "type" : "object",
+    "properties" : {
+        "slot_number" : {"type" : "integer"},
+        "vehicle_type" : {"type" : "string"},
+        "vehicle_number" : {"type" : "string"}
+    },
+    "required" : ["slot_number", "vehicle_type", "vehicle_number"]
+}
 
+bill_schema = {
+    "type" : "object",
+    "properties" : {
+        "customer" : customer_schema,
+        "time_in" : {"type" : "string"},
+        "time_out" : {"type" : "string"},
+        "total_charges" : {"type" : "integer"}
+    },
+    "required" : ["customer", "time_in", "time_out", "total_charges"]
+}
 
-class SlotsStatusSchema(Schema):
-    slot_id = fields.String(required=True, dump_only=True)
-    status = fields.String(required=True, dump_only=True)
+remove_vehicle_from_slot_schema = {
+    "type" : "object",
+    "properties" : {
+        "slot" : slot_schema,
+        "bill" : bill_schema
+    },
+    "required" : ["slot", "bill"]
+}
 
-class ListSlotsStatusSchema(SlotsStatusSchema):
-    slots = fields.List(fields.Nested(SlotsStatusSchema), dump_only=True)
+ban_slot_schema = {
+    "type" : "object",
+    "properties" : {
+        "slot_number" : {"type" : "integer"},
+        "vehicle_type" : {"type" : "string"}
+    },
+    "required" : ["slot_number", "vehicle_type"]
+}
 
+list_banned_slots_schema = {
+    "type" : "array",
+    "items" : ban_slot_schema
+}
 
-class SlotSchema(Schema):
-    slot_number = fields.Integer(required=True)
-    vehicle_type = fields.String(required=True)
-    vehicle_number = fields.String(required=True)
+parking_space_schema = {
+    "type" : "object",
+    "properties" : {
+        "slot_type" : {"type" : "string"},
+        "total_capacity" : {"type" : "integer"},
+        "charge" : {"type" : "integer"}
+    },
+    "required" : ["slot_type"]
+}
 
-class BillSchema(Schema):
-    customer = fields.Nested(CustomerSchema,required = True, dump_only=True)
-    time_in = fields.DateTime(required=True, dump_only=True)
-    time_out = fields.DateTime(required=True, dump_only=True)
-    total_charges = fields.Integer(required=True, dump_only=True)
+list_parking_spaces_schema = {
+    "type" : "array",
+    "items" : parking_space_schema
+}
 
-
-class RemoveVehicleFromSlot(Schema):
-    slot = fields.Nested(SlotSchema, required=True, dump_only=True)
-    bill = fields.Nested(BillSchema, required=True, dump_only=True)
-
-
-class BanSlotSchema(Schema):
-    slot_number = fields.Integer(required=True)
-    vehicle_type = fields.String(required=True)
-
-class ListBannedSlotsSchema(BanSlotSchema):
-    banned_slots = fields.List(fields.Nested(BanSlotSchema), many=True)
-
-
-
-class ParkingSpaceSchema(Schema):
-    slot_type = fields.String(required=True)
-    total_capacity = fields.Integer()
-    charge = fields.Integer()
-
-class ListParkingSpaceSchema(ParkingSpaceSchema):
-    parking_spaces = fields.List(fields.Nested(ParkingSpaceSchema), many=True)
-
-
-class UserSchema(Schema):
-    username = fields.String(required=True)
-    password = fields.String(required=True)
+user_schema = {
+    "type" : "object",
+    "properties" : {
+        "username" : {"type" : "string"},
+        "password" : {"type" : "string"}
+    },
+    "required" : ["username", "password"]
+}

@@ -1,5 +1,4 @@
 import logging
-from tabulate import tabulate
 from src.controllers.billing import Billing
 from src.controllers.vehicle import Vehicle
 from src.helpers.helpers import get_sql_queries

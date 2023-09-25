@@ -2,7 +2,7 @@ import json
 from datetime import datetime, date
 import logging
 from src.configurations import config
-from Parking_Management_System.src.helpers import validations
+from src.helpers import validations
 logger = logging.getLogger(__name__)
 
 

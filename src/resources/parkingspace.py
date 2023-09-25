@@ -1,12 +1,16 @@
+import traceback
 from flask_jwt_extended import jwt_required, get_jwt
+from flask import request
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
+from src.helpers.validations import validate_request_data
 from src.helpers.entry_menu import Menu
-from src.schemas import ListParkingSpaceSchema, ParkingSpaceSchema
+from src.schemas import list_parking_spaces_schema, parking_space_schema
 from src.models.database_helpers import DatabaseHelper
 from src.models.database import Database
 
-blp = Blueprint("parkingspace", __name__, description="Operations on Parking Space")
+blp = Blueprint("parkingspace", __name__,
+                description="Operations on Parking Space")
 
 
 db = Database()
@@ -18,50 +22,77 @@ menu_obj = Menu(db)
 class ParkingSpace(MethodView):
 
     @jwt_required()
-    @blp.response(200, ListParkingSpaceSchema(many=True))
     def get(self):
         jwt = get_jwt()
         role = jwt.get("role")
         if "Admin" not in role and "Operator" not in role:
             abort(401, message="Unauthorized")
+
         try:
             parking_spaces = menu_obj.check_parking_capacity()
-        except Exception as e:
+        except LookupError as e:
+            abort(409, message=str(e))
+        except ValueError as e:
             abort(400, message=str(e))
+        except Exception as e:
+            abort(500, message="An Error Occurred Internally in the Server")
         return parking_spaces
-    
+
     @jwt_required()
-    @blp.arguments(ParkingSpaceSchema)
-    @blp.response(200, ParkingSpaceSchema)
-    def put(self, item):
+    def put(self):
         jwt = get_jwt()
         if "Admin" not in jwt.get("role"):
             abort(401, message="Unauthorized")
+
+        request_data = request.get_json()
+        validation_response = validate_request_data(
+            request_data, parking_space_schema)
+        if validation_response:
+            return validation_response, 400
+
         try:
-            if item.get("total_capacity"):
-                if item.get("total_capacity") < 0:
+            if request_data.get("total_capacity"):
+                if request_data.get("total_capacity") < 0:
                     raise ValueError("Total Capacity cannot be less than 0")
-                menu_obj.driver_update_parking_space(item.get("total_capacity"), item.get("slot_type"))
-            if item.get("charge"):
-                if item.get("charge") < 0:
+                menu_obj.driver_update_parking_space(
+                    request_data.get("total_capacity"), request_data.get("slot_type"))
+            if request_data.get("charge"):
+                if request_data.get("charge") < 0:
                     raise ValueError("Charge cannot be less than 0")
-                menu_obj.update_parking_charges(item.get("charge"), item.get("slot_type"))
-        except Exception as e:
+                menu_obj.update_parking_charges(
+                    request_data.get("charge"), request_data.get("slot_type"))
+        except LookupError as e:
+            abort(409, message=str(e))
+        except ValueError as e:
             abort(400, message=str(e))
-        return item
-    
+        except Exception as e:
+            abort(500, message="An Error Occurred Internally in the Server")
+        return request_data
+
     @jwt_required()
-    @blp.arguments(ParkingSpaceSchema)
-    @blp.response(200, ParkingSpaceSchema)
-    def post(self, item):
+    def post(self):
         jwt = get_jwt()
-        if jwt.get("role") != "Admin":
+        if "Admin" not in jwt.get("role"):
             abort(401, message="Unauthorized")
+
+        request_data = request.get_json()
+        validation_response = validate_request_data(
+            request_data, parking_space_schema)
+        if validation_response:
+            return validation_response, 400
+
         try:
-            if item.get("total_capacity") and item.get("charge"):
-                menu_obj.driver_add_vehicle_category(item.get("slot_type"), item.get("total_capacity"), item.get("charge"))
+            if request_data.get("total_capacity") and request_data.get("charge"):
+                menu_obj.driver_add_vehicle_category(
+                    request_data.get("slot_type"), request_data.get("total_capacity"), request_data.get("charge"))
             else:
-                raise ValueError("Please insert total_capacity and charge fields both.")
-        except Exception as e:
+                abort(
+                    400, message="Please insert total_capacity and charge fields both.")
+                
+        except LookupError as e:
+            abort(409, message=str(e))
+        except ValueError as e:
             abort(400, message=str(e))
-        return item
+        except Exception as e:
+            abort(500, message="An Error Occurred Internally in the Server")
+        return request_data
