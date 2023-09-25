@@ -30,11 +30,11 @@ class ParkingSpace(MethodView):
 
         try:
             parking_spaces = menu_obj.check_parking_capacity()
-        except LookupError as e:
-            abort(409, message=str(e))
-        except ValueError as e:
-            abort(400, message=str(e))
-        except Exception as e:
+        except LookupError as error:
+            abort(409, message=str(error))
+        except ValueError as error:
+            abort(400, message=str(error))
+        except Exception as error:
             abort(500, message="An Error Occurred Internally in the Server")
         return parking_spaces
 
@@ -61,11 +61,11 @@ class ParkingSpace(MethodView):
                     raise ValueError("Charge cannot be less than 0")
                 menu_obj.update_parking_charges(
                     request_data.get("charge"), request_data.get("slot_type"))
-        except LookupError as e:
-            abort(409, message=str(e))
-        except ValueError as e:
-            abort(400, message=str(e))
-        except Exception as e:
+        except LookupError as error:
+            abort(409, message=str(error))
+        except ValueError as error:
+            abort(400, message=str(error))
+        except Exception as error:
             abort(500, message="An Error Occurred Internally in the Server")
         return request_data
 
@@ -88,11 +88,11 @@ class ParkingSpace(MethodView):
             else:
                 abort(
                     400, message="Please insert total_capacity and charge fields both.")
-                
-        except LookupError as e:
-            abort(409, message=str(e))
-        except ValueError as e:
-            abort(400, message=str(e))
-        except Exception as e:
+
+        except LookupError as error:
+            abort(409, message=str(error))
+        except ValueError as error:
+            abort(400, message=str(error))
+        except Exception as error:
             abort(500, message="An Error Occurred Internally in the Server")
         return request_data

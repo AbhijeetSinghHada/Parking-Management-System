@@ -25,7 +25,7 @@ class Slots(MethodView):
         jwt = get_jwt()
         role = jwt.get("role")
         if "Admin" not in role and "Operator" not in role:
-            abort(401, message="Unauthorized")
+            abort(403, message="Forbidden.")
 
         request_data = request.get_json()
         validation_response = validate_request_data(request_data, slot_schema)
@@ -36,8 +36,8 @@ class Slots(MethodView):
         try:
             menu_obj.assign_slot(request_data.get("slot_number"), request_data.get(
                 "vehicle_type"), request_data.get("vehicle_number"))
-        except Exception as e:
-            abort(400, message=str(e))
+        except Exception as error:
+            abort(400, message=str(error))
         return request_data
 
 
@@ -49,12 +49,13 @@ class ListSlots(MethodView):
         jwt = get_jwt()
         role = jwt.get("role")
         if "Admin" not in role and "Operator" not in role:
-            abort(401, message="Unauthorized")
+            abort(403, message="Forbidden.")
+
         try:
             slots = menu_obj.get_slot_table_by_category(slot_type)
             print(slots)
-        except Exception as e:
-            abort(400, message=str(e))
+        except Exception as error:
+            abort(400, message=str(error))
         return slots
 
 
@@ -67,14 +68,14 @@ class RemoveVehicleFromSlot(MethodView):
         jwt = get_jwt()
         role = jwt.get("role")
         if "Admin" not in role and "Operator" not in role:
-            abort(401, message="Unauthorized")
+            abort(403, message="Forbidden.")
 
         try:
             slot_data, bill = menu_obj.unassign_slot(vehicle_number)
             print(slot_data, bill)
             return {"slot": slot_data, "bill": bill}
-        except Exception as e:
-            abort(400, message=str(e))
+        except Exception as error:
+            abort(400, message=str(error))
 
 
 @blp.route("/slots/ban")
@@ -84,7 +85,7 @@ class BanSlot(MethodView):
     def post(self):
         jwt = get_jwt()
         if "Admin" not in jwt.get("role"):
-            abort(401, message="Unauthorized")
+            abort(403, message="Forbidden.")
 
         request_data = request.get_json()
         validation_response = validate_request_data(
@@ -95,11 +96,11 @@ class BanSlot(MethodView):
         try:
             menu_obj.ban_slot(request_data.get("slot_number"),
                               request_data.get("vehicle_type"))
-        except LookupError as e:
-            abort(409, message=str(e))
-        except ValueError as e:
-            abort(400, message=str(e))
-        except Exception as e:
+        except LookupError as error:
+            abort(409, message=str(error))
+        except ValueError as error:
+            abort(400, message=str(error))
+        except Exception as error:
             abort(500, message="An Error Occurred Internally in the Server")
         return request_data
 
@@ -107,7 +108,7 @@ class BanSlot(MethodView):
     def delete(self):
         jwt = get_jwt()
         if "Admin" not in jwt.get("role"):
-            abort(401, message="Unauthorized")
+            abort(403, message="Forbidden.")
 
         request_data = request.get_json()
         validation_response = validate_request_data(
@@ -118,11 +119,11 @@ class BanSlot(MethodView):
         try:
             menu_obj.unban_slot(request_data.get("slot_number"),
                                 request_data.get("vehicle_type"))
-        except LookupError as e:
-            abort(409, message=str(e))
-        except ValueError as e:
-            abort(400, message=str(e))
-        except Exception as e:
+        except LookupError as error:
+            abort(409, message=str(error))
+        except ValueError as error:
+            abort(400, message=str(error))
+        except Exception as error:
             abort(500, message="An Error Occurred Internally in the Server")
         return request_data
 
@@ -130,14 +131,15 @@ class BanSlot(MethodView):
     def get(self):
         jwt = get_jwt()
         if "Admin" not in jwt.get("role"):
-            abort(401, message="Unauthorized")
+            abort(403, message="Forbidden.")
+
         try:
             slots = menu_obj.view_ban_slots()
             print(slots)
-        except LookupError as e:
-            abort(409, message=str(e))
-        except ValueError as e:
-            abort(400, message=str(e))
-        except Exception as e:
+        except LookupError as error:
+            abort(409, message=str(error))
+        except ValueError as error:
+            abort(400, message=str(error))
+        except Exception as error:
             abort(500, message="An Error Occurred Internally in the Server")
         return slots

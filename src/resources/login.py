@@ -26,8 +26,8 @@ class UserLogin(MethodView):
         try:
             instance = Login(
                 username=user_data["username"], password=user_data["password"], db=db)
-            user_id = instance.authenticate()
-        except Exception as e:
+            instance.authenticate()
+        except Exception:
             abort(401, message="Invalid credentials.")
         else:
             user_data = instance.fetch_user_roles()
