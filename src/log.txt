@@ -1,0 +1,364 @@
+2023-09-29 11:41:39,490 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-09-29 11:41:39,490 INFO [33mPress CTRL+C to quit[0m
+2023-09-29 11:41:39,512 INFO  * Restarting with stat
+2023-09-29 11:41:44,676 WARNING  * Debugger is active!
+2023-09-29 11:41:44,688 INFO  * Debugger PIN: 413-849-336
+2023-09-29 11:41:47,295 INFO 127.0.0.1 - - [29/Sep/2023 11:41:47] "[35m[1mPOST /slots HTTP/1.1[0m" 500 -
+2023-09-29 11:41:56,833 DEBUG get_multiple_item called with params (('abhi', '91301e05e44406c12a4626a2382df30b04543c0561e10f5471f24c0928645109'),) returned item : [(1, 'abhi', '91301e05e44406c12a4626a2382df30b04543c0561e10f5471f24c0928645109', 1)] 
+2023-09-29 11:41:56,843 DEBUG get_multiple_item called with params ((1,),) returned item : [('Abhijeet Singh', 1, 'Admin'), ('Abhijeet Singh', 1, 'Operator')] 
+2023-09-29 11:41:56,843 DEBUG convert_user_details_to_dict called with params [('Abhijeet Singh', 1, 'Admin'), ('Abhijeet Singh', 1, 'Operator')]
+2023-09-29 11:41:57,041 INFO 127.0.0.1 - - [29/Sep/2023 11:41:57] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+2023-09-29 11:42:21,135 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\app.py', reloading
+2023-09-29 11:42:21,381 INFO  * Restarting with stat
+2023-09-29 11:42:49,196 INFO  * Restarting with stat
+2023-09-29 11:46:17,408 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-09-29 11:46:17,409 INFO [33mPress CTRL+C to quit[0m
+2023-09-29 11:46:17,416 INFO  * Restarting with stat
+2023-09-29 11:46:21,548 WARNING  * Debugger is active!
+2023-09-29 11:46:21,564 INFO  * Debugger PIN: 413-849-336
+2023-09-29 11:46:25,102 DEBUG get_multiple_item called with params (('abhi', '91301e05e44406c12a4626a2382df30b04543c0561e10f5471f24c0928645109'),) returned item : [(1, 'abhi', '91301e05e44406c12a4626a2382df30b04543c0561e10f5471f24c0928645109', 1)] 
+2023-09-29 11:46:25,102 DEBUG get_multiple_item called with params ((1,),) returned item : [('Abhijeet Singh', 1, 'Admin'), ('Abhijeet Singh', 1, 'Operator')] 
+2023-09-29 11:46:25,102 DEBUG convert_user_details_to_dict called with params [('Abhijeet Singh', 1, 'Admin'), ('Abhijeet Singh', 1, 'Operator')]
+2023-09-29 11:46:25,102 INFO 127.0.0.1 - - [29/Sep/2023 11:46:25] "POST /login HTTP/1.1" 200 -
+2023-09-29 11:46:31,562 DEBUG get_vehicle_category_data called
+2023-09-29 11:46:31,565 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 5, 15)] 
+2023-09-29 11:46:31,565 DEBUG check_if_slot_already_occupied called with params 2, LMV
+2023-09-29 11:46:31,566 DEBUG get_slots_data called
+2023-09-29 11:46:31,581 DEBUG get_multiple_item called with params () returned item : [] 
+2023-09-29 11:46:31,581 DEBUG get_slots_data called
+2023-09-29 11:46:31,583 DEBUG get_multiple_item called with params () returned item : [] 
+2023-09-29 11:46:31,584 DEBUG check_if_vehicle_exists called with params RJ20CD7259
+2023-09-29 11:46:31,584 DEBUG get_vehicle_data called with params RJ20CD7259,,
+2023-09-29 11:46:31,587 DEBUG get_multiple_item called with params (('RJ20CD7259', '', ''),) returned item : [(1, 'Ram', 'ram@gmail.com', '1234567899', 'RJ20CD7259', 'LMV')] 
+2023-09-29 11:46:31,589 DEBUG insert_into_billing_table called with params RJ20CD7259,2023-09-29,11:46
+2023-09-29 11:46:31,602 DEBUG update_item called with params (('RJ20CD7259', datetime.date(2023, 9, 29), '11:46'),) returned item : 1, 
+2023-09-29 11:46:31,602 DEBUG assign_slot called
+2023-09-29 11:46:31,602 DEBUG insert_into_slot_table called with params 2,RJ20CD7259,LMV
+2023-09-29 11:46:31,610 DEBUG update_item called with params ((2, 'RJ20CD7259', 'LMV'),) returned item : 1, 
+2023-09-29 11:46:31,611 INFO 127.0.0.1 - - [29/Sep/2023 11:46:31] "POST /slots HTTP/1.1" 200 -
+2023-09-29 11:46:34,069 DEBUG get_vehicle_category_data called
+2023-09-29 11:46:34,071 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 5, 15)] 
+2023-09-29 11:46:34,071 DEBUG check_if_slot_already_occupied called with params 2, LMV
+2023-09-29 11:46:34,072 DEBUG get_slots_data called
+2023-09-29 11:46:34,075 DEBUG get_multiple_item called with params () returned item : [(2, 1, 'LMV', 2, 1, 'RJ20CD7259', 10, 1)] 
+2023-09-29 11:46:34,077 INFO 127.0.0.1 - - [29/Sep/2023 11:46:34] "[31m[1mPOST /slots HTTP/1.1[0m" 400 -
+2023-09-29 11:48:09,696 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\resources\\slot.py', reloading
+2023-09-29 11:48:10,030 INFO  * Restarting with stat
+2023-09-29 11:48:14,620 WARNING  * Debugger is active!
+2023-09-29 11:48:14,634 INFO  * Debugger PIN: 413-849-336
+2023-09-29 11:48:41,919 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\resources\\slot.py', reloading
+2023-09-29 11:48:42,298 INFO  * Restarting with stat
+2023-09-29 11:48:46,634 WARNING  * Debugger is active!
+2023-09-29 11:48:46,651 INFO  * Debugger PIN: 413-849-336
+2023-09-29 11:49:20,169 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\helpers\\driver_program.py', reloading
+2023-09-29 11:49:20,385 INFO  * Restarting with stat
+2023-09-29 11:49:25,442 WARNING  * Debugger is active!
+2023-09-29 11:49:25,459 INFO  * Debugger PIN: 413-849-336
+2023-09-29 11:49:29,014 DEBUG get_vehicle_category_data called
+2023-09-29 11:49:29,014 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 5, 15)] 
+2023-09-29 11:49:29,014 DEBUG check_if_slot_already_occupied called with params 2, LMV
+2023-09-29 11:49:29,029 DEBUG get_slots_data called
+2023-09-29 11:49:29,029 DEBUG get_multiple_item called with params () returned item : [(2, 1, 'LMV', 2, 1, 'RJ20CD7259', 10, 1)] 
+2023-09-29 11:49:29,029 INFO 127.0.0.1 - - [29/Sep/2023 11:49:29] "[31m[1mPOST /slots HTTP/1.1[0m" 409 -
+2023-09-29 11:50:52,013 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\resources\\slot.py', reloading
+2023-09-29 11:50:52,269 INFO  * Restarting with stat
+2023-09-29 11:50:57,834 WARNING  * Debugger is active!
+2023-09-29 11:50:57,852 INFO  * Debugger PIN: 413-849-336
+2023-09-29 11:51:32,263 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\resources\\vehicles.py', reloading
+2023-09-29 11:51:32,721 INFO  * Restarting with stat
+2023-09-29 11:51:39,033 WARNING  * Debugger is active!
+2023-09-29 11:51:39,043 INFO  * Debugger PIN: 413-849-336
+2023-09-29 11:52:56,456 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\resources\\vehicles.py', reloading
+2023-09-29 11:52:56,723 INFO  * Restarting with stat
+2023-09-29 11:53:01,529 WARNING  * Debugger is active!
+2023-09-29 11:53:01,534 INFO  * Debugger PIN: 413-849-336
+2023-09-29 11:54:57,573 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\resources\\slot.py', reloading
+2023-09-29 11:54:57,813 INFO  * Restarting with stat
+2023-09-29 11:55:03,003 WARNING  * Debugger is active!
+2023-09-29 11:55:03,019 INFO  * Debugger PIN: 413-849-336
+2023-09-29 11:56:08,550 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\resources\\parkingspace.py', reloading
+2023-09-29 11:56:08,767 INFO  * Restarting with stat
+2023-09-29 11:56:13,409 WARNING  * Debugger is active!
+2023-09-29 11:56:13,419 INFO  * Debugger PIN: 413-849-336
+2023-09-29 11:56:25,230 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\resources\\vehicles.py', reloading
+2023-09-29 11:56:25,473 INFO  * Restarting with stat
+2023-09-29 11:56:30,000 WARNING  * Debugger is active!
+2023-09-29 11:56:30,016 INFO  * Debugger PIN: 413-849-336
+2023-09-29 11:57:50,926 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\resources\\slot.py', reloading
+2023-09-29 11:57:51,174 INFO  * Restarting with stat
+2023-09-29 11:57:57,155 WARNING  * Debugger is active!
+2023-09-29 11:57:57,170 INFO  * Debugger PIN: 413-849-336
+2023-09-29 11:58:23,743 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\app.py', reloading
+2023-09-29 11:58:23,932 INFO  * Restarting with stat
+2023-09-29 11:58:28,565 WARNING  * Debugger is active!
+2023-09-29 11:58:28,580 INFO  * Debugger PIN: 413-849-336
+2023-09-29 11:58:39,536 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-09-29 11:58:39,537 INFO [33mPress CTRL+C to quit[0m
+2023-09-29 11:58:39,550 INFO  * Restarting with stat
+2023-09-29 11:58:44,184 WARNING  * Debugger is active!
+2023-09-29 11:58:44,195 INFO  * Debugger PIN: 413-849-336
+2023-09-29 11:58:59,800 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\resources\\slot.py', reloading
+2023-09-29 11:59:00,094 INFO  * Restarting with stat
+2023-09-29 11:59:04,238 WARNING  * Debugger is active!
+2023-09-29 11:59:04,249 INFO  * Debugger PIN: 413-849-336
+2023-09-29 11:59:10,227 DEBUG get_vehicle_category_data called
+2023-09-29 11:59:10,231 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 5, 15)] 
+2023-09-29 11:59:10,233 DEBUG check_if_slot_already_occupied called with params 2, LMV
+2023-09-29 11:59:10,234 DEBUG get_slots_data called
+2023-09-29 11:59:10,237 DEBUG get_multiple_item called with params () returned item : [(2, 1, 'LMV', 2, 1, 'RJ20CD7259', 10, 1)] 
+2023-09-29 11:59:10,240 INFO 127.0.0.1 - - [29/Sep/2023 11:59:10] "[31m[1mPOST /slots HTTP/1.1[0m" 409 -
+2023-09-29 11:59:32,541 DEBUG get_vehicle_category_data called
+2023-09-29 11:59:32,548 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 5, 15)] 
+2023-09-29 11:59:32,693 DEBUG Error Occurred: Slots(MethodView) Method: post() Traceback: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\resources\slot.py", line 39, in post
+    menu_obj.assign_slot(request_data.get("slot_number"), request_data.get(
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\helpers\driver_program.py", line 30, in assign_slot
+    parking_space.check_if_slot_in_range(slot_number, vehicle_type)
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\controllers\parking_space.py", line 40, in check_if_slot_in_range
+    if slot_number > parking_category_data[1]:
+                     ~~~~~~~~~~~~~~~~~~~~~^^^
+TypeError: 'NoneType' object is not subscriptable
+
+2023-09-29 11:59:32,697 ERROR Error Occurred: Slots(MethodView) Method: post() Error: 'NoneType' object is not subscriptable
+2023-09-29 11:59:32,698 INFO 127.0.0.1 - - [29/Sep/2023 11:59:32] "[35m[1mPOST /slots HTTP/1.1[0m" 500 -
+2023-09-29 12:01:01,297 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\helpers\\driver_program.py', reloading
+2023-09-29 12:01:01,517 INFO  * Restarting with stat
+2023-09-29 12:01:05,473 WARNING  * Debugger is active!
+2023-09-29 12:01:05,483 INFO  * Debugger PIN: 413-849-336
+2023-09-29 12:01:36,699 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\controllers\\parking_space.py', reloading
+2023-09-29 12:01:36,943 INFO  * Restarting with stat
+2023-09-29 12:01:41,953 WARNING  * Debugger is active!
+2023-09-29 12:01:41,971 INFO  * Debugger PIN: 413-849-336
+2023-09-29 12:01:46,345 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\helpers\\driver_program.py', reloading
+2023-09-29 12:01:46,581 INFO  * Restarting with stat
+2023-09-29 12:01:51,371 WARNING  * Debugger is active!
+2023-09-29 12:01:51,386 INFO  * Debugger PIN: 413-849-336
+2023-09-29 12:04:26,471 INFO 127.0.0.1 - - [29/Sep/2023 12:04:26] "[31m[1mPOST /slots HTTP/1.1[0m" 401 -
+2023-09-29 12:04:31,382 DEBUG get_multiple_item called with params (('abhi', '91301e05e44406c12a4626a2382df30b04543c0561e10f5471f24c0928645109'),) returned item : [(1, 'abhi', '91301e05e44406c12a4626a2382df30b04543c0561e10f5471f24c0928645109', 1)] 
+2023-09-29 12:04:31,397 DEBUG get_multiple_item called with params ((1,),) returned item : [('Abhijeet Singh', 1, 'Admin'), ('Abhijeet Singh', 1, 'Operator')] 
+2023-09-29 12:04:31,399 DEBUG convert_user_details_to_dict called with params [('Abhijeet Singh', 1, 'Admin'), ('Abhijeet Singh', 1, 'Operator')]
+2023-09-29 12:04:31,401 INFO 127.0.0.1 - - [29/Sep/2023 12:04:31] "POST /login HTTP/1.1" 200 -
+2023-09-29 12:04:35,008 DEBUG get_vehicle_category_data called
+2023-09-29 12:04:35,011 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 5, 15)] 
+2023-09-29 12:04:35,144 DEBUG Error Occurred: Slots(MethodView) Method: post() Traceback: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\resources\slot.py", line 39, in post
+    menu_obj.assign_slot(request_data.get("slot_number"), request_data.get(
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\helpers\driver_program.py", line 30, in assign_slot
+    parking_space.check_if_slot_in_range(slot_number, vehicle_type)
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\controllers\parking_space.py", line 40, in check_if_slot_in_range
+    if slot_number > parking_category_data[1]:
+                     ~~~~~~~~~~~~~~~~~~~~~^^^
+TypeError: 'NoneType' object is not subscriptable
+
+2023-09-29 12:04:35,144 ERROR Error Occurred: Slots(MethodView) Method: post() Error: 'NoneType' object is not subscriptable
+2023-09-29 12:04:35,149 INFO 127.0.0.1 - - [29/Sep/2023 12:04:35] "[35m[1mPOST /slots HTTP/1.1[0m" 500 -
+2023-09-29 12:05:24,451 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\controllers\\parking_space.py', reloading
+2023-09-29 12:05:24,685 INFO  * Restarting with stat
+2023-09-29 12:05:29,530 WARNING  * Debugger is active!
+2023-09-29 12:05:29,543 INFO  * Debugger PIN: 413-849-336
+2023-09-29 12:05:41,472 DEBUG get_vehicle_category_data called
+2023-09-29 12:05:41,488 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 5, 15)] 
+2023-09-29 12:05:41,613 DEBUG Error Occurred: Slots(MethodView) Method: post() Traceback: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\resources\slot.py", line 39, in post
+    menu_obj.assign_slot(request_data.get("slot_number"), request_data.get(
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\helpers\driver_program.py", line 30, in assign_slot
+    parking_space.check_if_slot_in_range(slot_number, vehicle_type)
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\controllers\parking_space.py", line 40, in check_if_slot_in_range
+    if slot_number > parking_category_data[1]:
+                     ~~~~~~~~~~~~~~~~~~~~~^^^
+TypeError: 'NoneType' object is not subscriptable
+
+2023-09-29 12:05:41,613 ERROR Error Occurred: Slots(MethodView) Method: post() Error: 'NoneType' object is not subscriptable
+2023-09-29 12:05:41,613 INFO 127.0.0.1 - - [29/Sep/2023 12:05:41] "[35m[1mPOST /slots HTTP/1.1[0m" 500 -
+2023-09-29 12:07:07,583 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\controllers\\parking_space.py', reloading
+2023-09-29 12:07:07,866 INFO  * Restarting with stat
+2023-09-29 12:07:12,641 WARNING  * Debugger is active!
+2023-09-29 12:07:12,653 INFO  * Debugger PIN: 413-849-336
+2023-09-29 12:07:14,797 DEBUG get_vehicle_category_data called
+2023-09-29 12:07:14,801 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 5, 15)] 
+2023-09-29 12:07:14,939 DEBUG Error Occurred: Slots(MethodView) Method: post() Traceback: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\resources\slot.py", line 39, in post
+    menu_obj.assign_slot(request_data.get("slot_number"), request_data.get(
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\helpers\driver_program.py", line 30, in assign_slot
+    parking_space.check_if_slot_in_range(slot_number, vehicle_type)
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\controllers\parking_space.py", line 40, in check_if_slot_in_range
+    if slot_number > parking_category_data[1]:
+                     ~~~~~~~~~~~~~~~~~~~~~^^^
+TypeError: 'NoneType' object is not subscriptable
+
+2023-09-29 12:07:14,941 ERROR Error Occurred: Slots(MethodView) Method: post() Error: 'NoneType' object is not subscriptable
+2023-09-29 12:07:14,943 INFO 127.0.0.1 - - [29/Sep/2023 12:07:14] "[35m[1mPOST /slots HTTP/1.1[0m" 500 -
+2023-09-29 12:07:59,022 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\controllers\\parking_space.py', reloading
+2023-09-29 12:07:59,226 INFO  * Restarting with stat
+2023-09-29 12:08:03,620 WARNING  * Debugger is active!
+2023-09-29 12:08:03,625 INFO  * Debugger PIN: 413-849-336
+2023-09-29 12:08:05,678 DEBUG get_vehicle_category_data called
+2023-09-29 12:08:05,680 DEBUG get_vehicle_category_data called
+2023-09-29 12:08:06,112 DEBUG Error Occurred: Slots(MethodView) Method: post() Traceback: Traceback (most recent call last):
+  File "C:\Users\ahada\AppData\Local\Programs\Python\Python311\Lib\site-packages\mysql\connector\connection_cext.py", line 633, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Lost connection to MySQL server during query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\models\database_helpers.py", line 39, in get_vehicle_category_data
+    self.vehicle_category_data = self.db.get_multiple_items(
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\models\database.py", line 30, in get_multiple_items
+    self.cursor.execute(query, *args)
+  File "C:\Users\ahada\AppData\Local\Programs\Python\Python311\Lib\site-packages\mysql\connector\cursor_cext.py", line 330, in execute
+    result = self._cnx.cmd_query(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\AppData\Local\Programs\Python\Python311\Lib\site-packages\mysql\connector\opentelemetry\context_propagation.py", line 77, in wrapper
+    return method(cnx, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\AppData\Local\Programs\Python\Python311\Lib\site-packages\mysql\connector\connection_cext.py", line 641, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.OperationalError: 2013 (HY000): Lost connection to MySQL server during query
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\resources\slot.py", line 39, in post
+    menu_obj.assign_slot(request_data.get("slot_number"), request_data.get(
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\helpers\driver_program.py", line 30, in assign_slot
+    parking_space.check_if_slot_in_range(slot_number, vehicle_type)
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\controllers\parking_space.py", line 38, in check_if_slot_in_range
+    parking_category_data = self.get_parking_slot_attributes(
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\controllers\parking_space.py", line 23, in get_parking_slot_attributes
+    vehicle_category_data = self.db_helper.get_vehicle_category_data()
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\models\database_helpers.py", line 43, in get_vehicle_category_data
+    raise ResourceWarning(
+ResourceWarning: Cannot Fetch Vehicle Category Data.
+
+2023-09-29 12:08:06,114 ERROR Error Occurred: Slots(MethodView) Method: post() Error: Cannot Fetch Vehicle Category Data.
+2023-09-29 12:08:06,116 INFO 127.0.0.1 - - [29/Sep/2023 12:08:06] "[35m[1mPOST /slots HTTP/1.1[0m" 500 -
+2023-09-29 12:09:10,970 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-09-29 12:09:10,971 INFO [33mPress CTRL+C to quit[0m
+2023-09-29 12:09:10,985 INFO  * Restarting with stat
+2023-09-29 12:09:16,494 WARNING  * Debugger is active!
+2023-09-29 12:09:16,494 INFO  * Debugger PIN: 413-849-336
+2023-09-29 12:09:19,347 DEBUG get_vehicle_category_data called
+2023-09-29 12:09:19,352 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 5, 15)] 
+2023-09-29 12:09:19,726 DEBUG Error Occurred: Slots(MethodView) Method: post() Traceback: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\resources\slot.py", line 39, in post
+    menu_obj.assign_slot(request_data.get("slot_number"), request_data.get(
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\helpers\driver_program.py", line 30, in assign_slot
+    parking_space.check_if_slot_in_range(slot_number, vehicle_type)
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\controllers\parking_space.py", line 40, in check_if_slot_in_range
+    if slot_number > parking_category_data[1]:
+                     ~~~~~~~~~~~~~~~~~~~~~^^^
+TypeError: 'NoneType' object is not subscriptable
+
+2023-09-29 12:09:19,729 ERROR Error Occurred: Slots(MethodView) Method: post() Error: 'NoneType' object is not subscriptable
+2023-09-29 12:09:19,731 INFO 127.0.0.1 - - [29/Sep/2023 12:09:19] "[35m[1mPOST /slots HTTP/1.1[0m" 500 -
+2023-09-29 12:11:40,767 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\controllers\\parking_space.py', reloading
+2023-09-29 12:11:41,010 INFO  * Restarting with stat
+2023-09-29 12:11:47,757 WARNING  * Debugger is active!
+2023-09-29 12:11:47,772 INFO  * Debugger PIN: 413-849-336
+2023-09-29 12:11:50,420 DEBUG get_vehicle_category_data called
+2023-09-29 12:11:50,424 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 5, 15)] 
+2023-09-29 12:11:50,425 DEBUG get_vehicle_category_data called
+2023-09-29 12:11:50,428 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 5, 15)] 
+2023-09-29 12:11:50,571 DEBUG Error Occurred: Slots(MethodView) Method: post() Traceback: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\resources\slot.py", line 39, in post
+    menu_obj.assign_slot(request_data.get("slot_number"), request_data.get(
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\helpers\driver_program.py", line 31, in assign_slot
+    parking_space.check_if_vehicle_type_exists(vehicle_type)
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\controllers\parking_space.py", line 45, in check_if_vehicle_type_exists
+    logger.de(vehicle_category_data, " ", vehicle_type)
+    ^^^^^^^^^
+AttributeError: 'Logger' object has no attribute 'de'
+
+2023-09-29 12:11:50,573 ERROR Error Occurred: Slots(MethodView) Method: post() Error: 'Logger' object has no attribute 'de'
+2023-09-29 12:11:50,575 INFO 127.0.0.1 - - [29/Sep/2023 12:11:50] "[35m[1mPOST /slots HTTP/1.1[0m" 500 -
+2023-09-29 12:11:54,217 DEBUG get_vehicle_category_data called
+2023-09-29 12:11:54,220 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 5, 15)] 
+2023-09-29 12:11:54,221 DEBUG get_vehicle_category_data called
+2023-09-29 12:11:54,224 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 5, 15)] 
+2023-09-29 12:11:54,228 DEBUG Error Occurred: Slots(MethodView) Method: post() Traceback: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\resources\slot.py", line 39, in post
+    menu_obj.assign_slot(request_data.get("slot_number"), request_data.get(
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\helpers\driver_program.py", line 31, in assign_slot
+    parking_space.check_if_vehicle_type_exists(vehicle_type)
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\controllers\parking_space.py", line 45, in check_if_vehicle_type_exists
+    logger.de(vehicle_category_data, " ", vehicle_type)
+    ^^^^^^^^^
+AttributeError: 'Logger' object has no attribute 'de'
+
+2023-09-29 12:11:54,229 ERROR Error Occurred: Slots(MethodView) Method: post() Error: 'Logger' object has no attribute 'de'
+2023-09-29 12:11:54,231 INFO 127.0.0.1 - - [29/Sep/2023 12:11:54] "[35m[1mPOST /slots HTTP/1.1[0m" 500 -
+2023-09-29 12:12:50,239 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-09-29 12:12:50,241 INFO [33mPress CTRL+C to quit[0m
+2023-09-29 12:12:50,256 INFO  * Restarting with stat
+2023-09-29 12:12:56,214 WARNING  * Debugger is active!
+2023-09-29 12:12:56,228 INFO  * Debugger PIN: 413-849-336
+2023-09-29 12:13:00,423 DEBUG get_multiple_item called with params (('abhi', '91301e05e44406c12a4626a2382df30b04543c0561e10f5471f24c0928645109'),) returned item : [(1, 'abhi', '91301e05e44406c12a4626a2382df30b04543c0561e10f5471f24c0928645109', 1)] 
+2023-09-29 12:13:00,425 DEBUG get_multiple_item called with params ((1,),) returned item : [('Abhijeet Singh', 1, 'Admin'), ('Abhijeet Singh', 1, 'Operator')] 
+2023-09-29 12:13:00,425 DEBUG convert_user_details_to_dict called with params [('Abhijeet Singh', 1, 'Admin'), ('Abhijeet Singh', 1, 'Operator')]
+2023-09-29 12:13:00,433 INFO 127.0.0.1 - - [29/Sep/2023 12:13:00] "POST /login HTTP/1.1" 200 -
+2023-09-29 12:13:07,413 DEBUG get_vehicle_category_data called
+2023-09-29 12:13:07,416 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 5, 15)] 
+2023-09-29 12:13:07,417 DEBUG get_vehicle_category_data called
+2023-09-29 12:13:07,419 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 5, 15)] 
+2023-09-29 12:13:07,798 DEBUG Error Occurred: Slots(MethodView) Method: post() Traceback: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\resources\slot.py", line 39, in post
+    menu_obj.assign_slot(request_data.get("slot_number"), request_data.get(
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\helpers\driver_program.py", line 31, in assign_slot
+    parking_space.check_if_vehicle_type_exists(vehicle_type)
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\controllers\parking_space.py", line 45, in check_if_vehicle_type_exists
+    logger.de(vehicle_category_data, " ", vehicle_type)
+    ^^^^^^^^^
+AttributeError: 'Logger' object has no attribute 'de'
+
+2023-09-29 12:13:07,799 ERROR Error Occurred: Slots(MethodView) Method: post() Error: 'Logger' object has no attribute 'de'
+2023-09-29 12:13:07,800 INFO 127.0.0.1 - - [29/Sep/2023 12:13:07] "[35m[1mPOST /slots HTTP/1.1[0m" 500 -
+2023-09-29 12:13:34,010 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\controllers\\parking_space.py', reloading
+2023-09-29 12:13:34,230 INFO  * Restarting with stat
+2023-09-29 12:13:39,013 WARNING  * Debugger is active!
+2023-09-29 12:13:39,024 INFO  * Debugger PIN: 413-849-336
+2023-09-29 12:13:41,088 DEBUG get_vehicle_category_data called
+2023-09-29 12:13:41,092 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 5, 15)] 
+2023-09-29 12:13:41,092 DEBUG get_vehicle_category_data called
+2023-09-29 12:13:41,095 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 5, 15)] 
+2023-09-29 12:13:41,533 DEBUG check_if_slot_already_occupied called with params 2, LMV
+2023-09-29 12:13:41,534 DEBUG get_slots_data called
+2023-09-29 12:13:41,540 DEBUG get_multiple_item called with params () returned item : [(2, 1, 'LMV', 2, 1, 'RJ20CD7259', 10, 1)] 
+2023-09-29 12:13:41,543 INFO 127.0.0.1 - - [29/Sep/2023 12:13:41] "[31m[1mPOST /slots HTTP/1.1[0m" 409 -
+2023-09-29 12:13:52,186 DEBUG get_vehicle_category_data called
+2023-09-29 12:13:52,192 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 5, 15)] 
+2023-09-29 12:13:52,196 DEBUG Error Occurred: Slots(MethodView) Method: post() Traceback: Traceback (most recent call last):
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\resources\slot.py", line 39, in post
+    menu_obj.assign_slot(request_data.get("slot_number"), request_data.get(
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\helpers\driver_program.py", line 30, in assign_slot
+    parking_space.check_if_slot_in_range(slot_number, vehicle_type)
+  File "C:\Users\ahada\OneDrive - WatchGuard Technologies Inc\REST Parking Management System\Parking_Management_System\src\controllers\parking_space.py", line 40, in check_if_slot_in_range
+    if slot_number > parking_category_data[1]:
+                     ~~~~~~~~~~~~~~~~~~~~~^^^
+TypeError: 'NoneType' object is not subscriptable
+
+2023-09-29 12:13:52,196 ERROR Error Occurred: Slots(MethodView) Method: post() Error: 'NoneType' object is not subscriptable
+2023-09-29 12:13:52,198 INFO 127.0.0.1 - - [29/Sep/2023 12:13:52] "[35m[1mPOST /slots HTTP/1.1[0m" 500 -
+2023-09-29 12:14:11,650 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\helpers\\driver_program.py', reloading
+2023-09-29 12:14:11,861 INFO  * Restarting with stat
+2023-09-29 12:14:16,385 WARNING  * Debugger is active!
+2023-09-29 12:14:16,401 INFO  * Debugger PIN: 413-849-336
+2023-09-29 12:14:18,678 DEBUG get_vehicle_category_data called
+2023-09-29 12:14:18,678 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 5, 15)] 
+2023-09-29 12:14:19,284 INFO 127.0.0.1 - - [29/Sep/2023 12:14:19] "[31m[1mPOST /slots HTTP/1.1[0m" 400 -
+2023-09-29 12:14:26,822 DEBUG get_vehicle_category_data called
+2023-09-29 12:14:26,824 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 5, 15)] 
+2023-09-29 12:14:26,878 DEBUG get_vehicle_category_data called
+2023-09-29 12:14:26,881 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 5, 15)] 
+2023-09-29 12:14:26,882 DEBUG check_if_slot_already_occupied called with params 2, LMV
+2023-09-29 12:14:26,882 DEBUG get_slots_data called
+2023-09-29 12:14:26,888 DEBUG get_multiple_item called with params () returned item : [(2, 1, 'LMV', 2, 1, 'RJ20CD7259', 10, 1)] 
+2023-09-29 12:14:26,890 INFO 127.0.0.1 - - [29/Sep/2023 12:14:26] "[31m[1mPOST /slots HTTP/1.1[0m" 409 -
