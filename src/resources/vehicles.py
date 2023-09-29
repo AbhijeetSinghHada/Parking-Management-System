@@ -1,19 +1,22 @@
+import traceback
 from flask_jwt_extended import jwt_required, get_jwt
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from flask import request
 from src.helpers.validations import validate_request_data
-from src.helpers.entry_menu import Menu
+from src.helpers.driver_program import ProgramDriver
 from src.schemas import vehicle_schema
 from src.models.database_helpers import DatabaseHelper
 from src.models.database import Database
+import logging
+logger = logging.getLogger(__name__)
 
 blp = Blueprint("vehicle", __name__, description="Operations on Vehicles")
 
 
 db = Database()
 db_helper = DatabaseHelper(db)
-menu_obj = Menu(db)
+menu_obj = ProgramDriver(db)
 
 
 @blp.route("/vehicle")
@@ -31,7 +34,7 @@ class Vehicle(MethodView):
         validation_response = validate_request_data(
             request_data, vehicle_schema)
         if validation_response:
-            return validation_response, 400
+            abort(400, message=validation_response)
 
         parameters = (request_data.get("vehicle_number"), request_data.get("vehicle_type"),
                       request_data.get("customer").get(
@@ -40,6 +43,15 @@ class Vehicle(MethodView):
         try:
             data, response = menu_obj.add_vehicle(*parameters)
             data["message"] = response
+            return data
+        except LookupError as error:
+            abort(409, message=str(error))
+        except ValueError as error:
+            abort(400, message=str(error))
         except Exception as error:
-            abort(500, message=str(error))
-        return data
+            logger.debug("Error Occurred: Vehicle(MethodView) Method: post() Traceback: {}".format(
+                traceback.format_exc()))
+            logger.error("Error Occurred: Vehicle(MethodView) Method: post() Error: {}".format(
+                str(error)))
+            abort(500, message="An Error Occurred Internally in the Server")
+        

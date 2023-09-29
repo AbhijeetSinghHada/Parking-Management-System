@@ -14,16 +14,13 @@ class ParkingSpace(Slot):
         logger.debug("update_parking_space called, params - vehicle type : {}, new_capacity : {} ".format(
             parking_category, new_capacity))
         self.db_helper.update_parking_capacity(new_capacity, parking_category)
-        print("\nParking Capacity Updated Successfully\n")
 
     def update_parking_charges(self, new_charges, parking_category):
 
         self.db_helper.update_charges(new_charges, parking_category)
-        print("\nParking Charges Updated Successfully\n")
 
     def get_parking_slot_attributes(self, parking_category):
         vehicle_category_data = self.db_helper.get_vehicle_category_data()
-        print(vehicle_category_data)
         parking_category_data = None
         for i in vehicle_category_data:
             if parking_category == i[0]:
@@ -42,3 +39,10 @@ class ParkingSpace(Slot):
             parking_category)
         if slot_number > parking_category_data[1]:
             raise ValueError("Slot Number Exceeds the Total Capacity")
+
+    def check_if_vehicle_type_exists(self, vehicle_type):
+        vehicle_category_data = self.db_helper.get_vehicle_category_data()
+        for i in vehicle_category_data:
+            if vehicle_type == i[0]:
+                return
+        raise ValueError("Vehicle Type Does Not Exist")

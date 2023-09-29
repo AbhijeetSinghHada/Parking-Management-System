@@ -14,7 +14,6 @@ prompts = get_prompts()
 
 
 class ProgramDriver:
-    user_details = {}
 
     def __init__(self, db):
         self.db_helper = DatabaseHelper(db)

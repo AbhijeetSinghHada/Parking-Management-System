@@ -1,12 +1,11 @@
+from src.controllers.billing import Billing
+from unittest.mock import Mock, MagicMock
+from unittest import mock
+import datetime
+import unittest
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-import unittest
-import datetime
-from unittest import mock
-from unittest.mock import Mock, MagicMock
-
-from src.controllers.billing import Billing
 
 
 class TestBilling(unittest.TestCase):
@@ -17,30 +16,34 @@ class TestBilling(unittest.TestCase):
 
     def test_calculate_charges_hours_more_than_zero(self):
         return_value = self.billing.calculate_charges(20, 12)
-        self.assertEquals(return_value, 240)
+        self.assertEqual(return_value, 240)
         return_value = self.billing.calculate_charges(0, 12)
-        self.assertEquals(return_value, 0)
+        self.assertEqual(return_value, 0)
 
     def test_calculate_charges_hours_zero(self):
         return_value = self.billing.calculate_charges(20, 0)
-        self.assertEquals(return_value, 20)
+        self.assertEqual(return_value, 20)
 
     def test_calculate_charges_hours_less_than_zero(self):
         return_value = self.billing.calculate_charges(40, -2)
-        self.assertEquals(return_value, 40)
+        self.assertEqual(return_value, 40)
 
     @mock.patch("src.helpers.helpers.return_date_time_combined")
     def test_generate_bill_with_existing_id(self, mock_helper):
         mock_data = [(12, 1, 'Ram', 'ram@gmail.com', '1234567899', 'RJ20CD7259',
-                      'LMV', datetime.date(2023, 9, 11), datetime.timedelta(seconds=36900), 25)]
+                      'LMV', datetime.date(2023, 9, 11), datetime.timedelta(seconds=36900), datetime.datetime(2023, 9, 11, 10, 15), 25)]
         self.db_helper.get_billing_details.return_value = mock_data
         mock_helper.return_value = datetime.datetime(2023, 9, 11, 10, 16)
         bill_id = 1
         bill = self.billing.generate_bill(bill_id)
-
-        # Assertions to check if the function returns the expected result
-        expected_bill = [12, 1, 'Ram', 'ram@gmail.com', '1234567899',
-                         'RJ20CD7259', 'LMV', datetime.datetime(2023, 9, 11, 10, 15), 25]
+        expected_bill = {'customer': {'cutomer_id': 1,
+                                      'name': 'Ram',
+                                      'email_address': 'ram@gmail.com',
+                                      'phone_number': '1234567899'},
+                         'time_in': datetime.datetime(2023, 9, 11, 10, 15),
+                         'time_out': datetime.datetime(2023, 9, 11, 10, 15),
+                         'total_charges': 25
+                         }
         self.assertEqual(bill, expected_bill)
 
     def test_generate_bill_with_non_existing_id(self):

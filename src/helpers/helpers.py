@@ -2,7 +2,6 @@ import json
 from datetime import datetime, date
 import logging
 from src.configurations import config
-from src.helpers import validations
 logger = logging.getLogger(__name__)
 
 
@@ -12,14 +11,7 @@ def convert_user_details_to_dict(lst):
     user_dict = {'name': lst[0][0],
                  'user_id': lst[0][1],
                  'role': [x[2] for x in lst]}
-    print(user_dict)
     return user_dict
-
-
-def ask_user_for_confirmation(msg):
-    print("Functionality : {}\n".format(msg))
-    if input("Enter 'q' to exit : \nPress any key continue : ") == 'q':
-        raise
 
 
 def get_prompts():
@@ -30,14 +22,6 @@ def get_prompts():
 def get_sql_queries():
     with open(config.sql_queries_path, "r") as fp:
         return json.load(fp)
-
-
-def check_input_in_range(message, comparison_category):
-    user_inp = validations.get_int_input(message)
-    while user_inp > comparison_category or user_inp < 1:
-        user_inp = validations.get_int_input(
-            f'Please Enter valid index: ')
-    return user_inp
 
 
 def return_time_difference(_date, _time):
@@ -57,11 +41,13 @@ def return_no_of_hours_elapsed(date_data, time_data):
     hours = str(int(total_seconds // 3600)).zfill(2)
     return int(hours)
 
+
 def return_date_and_time():
     today_date = date.today()
     now = datetime.now()
     current_time = now.strftime("%H:%M")
-    return today_date,current_time
+    return today_date, current_time
+
 
 def return_current_date_time():
     datetime_now = datetime.now()

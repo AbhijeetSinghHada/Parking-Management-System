@@ -14,18 +14,19 @@ class Vehicle(Customer):
         self.db_helpers = db_helpers
 
     def check_if_vehicle_exists(self, vehicle_number):
-        logger.debug("check_if_vehicle_exists called with params {}".format(vehicle_number))
+        logger.debug(
+            "check_if_vehicle_exists called with params {}".format(vehicle_number))
         data = self.db_helpers.get_vehicle_data(vehicle_number=vehicle_number)
         if data:
             return data
         return None
 
     def add_vehicle(self, vehicle_number, vehicle_type):
-        logger.debug("add_vehicle called with params {},{}".format(vehicle_number, vehicle_type))
+        logger.debug("add_vehicle called with params {},{}".format(
+            vehicle_number, vehicle_type))
 
         self.db_helpers.insert_vehicle(vehicle_number, vehicle_type)
-        print("\nVehicle Added Successfully.\n")
 
     def add_vehicle_category(self, slot_type, total_capacity, parking_charge):
-        self.db_helpers.add_vehicle_category(slot_type, total_capacity, parking_charge)
-        print("\nVehicle Category Added Successfully.\n")
+        self.db_helpers.add_vehicle_category(
+            slot_type, total_capacity, parking_charge)

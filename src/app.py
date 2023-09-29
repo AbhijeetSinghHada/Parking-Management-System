@@ -1,13 +1,18 @@
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-from flask import Flask
-from flask_smorest import Api
-from flask_jwt_extended import JWTManager
-from src.resources.slot import blp as SlotsBlueprint
-from src.resources.parkingspace import blp as ParkingSpaceBlueprint
-from src.resources.login import blp as LoginBlueprint
+import logging
 from src.resources.vehicles import blp as VehiclesBlueprint
+from src.resources.login import blp as LoginBlueprint
+from src.resources.parkingspace import blp as ParkingSpaceBlueprint
+from src.resources.slot import blp as SlotsBlueprint
+from flask_jwt_extended import JWTManager
+from flask_smorest import Api
+from flask import Flask
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s %(levelname)s %(message)s',
+                    filename='log.txt',)
+logger = logging.getLogger(__name__)
 
 
 def create_app():
