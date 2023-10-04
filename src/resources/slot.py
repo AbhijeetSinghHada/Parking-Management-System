@@ -91,7 +91,6 @@ class RemoveVehicleFromSlot(MethodView):
 
         try:
             slot_data, bill = menu_obj.unassign_slot(vehicle_number)
-            print(slot_data, bill)
             return {"slot": slot_data, "bill": bill}
         except LookupError as error:
             abort(409, message=str(error))

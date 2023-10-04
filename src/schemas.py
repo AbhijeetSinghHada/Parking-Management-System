@@ -89,6 +89,15 @@ parking_space_schema = {
     },
     "required" : ["slot_type"]
 }
+post_parking_space_schema = {
+    "type" : "object",
+    "properties" : {
+        "slot_type" : {"type" : "string"},
+        "total_capacity" : {"type" : "integer"},
+        "charge" : {"type" : "integer"}
+    },
+    "required" : ["slot_type", "total_capacity", "charge"]
+}
 
 list_parking_spaces_schema = {
     "type" : "array",

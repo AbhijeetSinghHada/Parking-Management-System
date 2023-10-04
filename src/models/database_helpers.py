@@ -181,9 +181,10 @@ class DatabaseHelper:
         logger.debug(
             f"insert_customer_details called with params {name},{email_address},{phone_number}")
         try:
-            self.db.update_item(
+            return self.db.update_item(
                 self.sql_queries.get("insert_customer"), (name, email_address, phone_number))
         except Exception as exc:
+            logger.debug(traceback.format_exc())
             raise ResourceWarning("Cannot Add Customer.") from exc
 
     def insert_vehicle(self, vehicle_number, vehicle_type):

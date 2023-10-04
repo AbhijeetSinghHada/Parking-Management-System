@@ -5,7 +5,7 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from src.helpers.validations import validate_request_data
 from src.helpers.driver_program import ProgramDriver
-from src.schemas import list_parking_spaces_schema, parking_space_schema
+from src.schemas import post_parking_space_schema, parking_space_schema
 from src.models.database_helpers import DatabaseHelper
 from src.models.database import Database
 import logging
@@ -60,7 +60,7 @@ class ParkingSpace(MethodView):
             if request_data.get("total_capacity"):
                 if request_data.get("total_capacity") < 0:
                     raise ValueError("Total Capacity cannot be less than 0")
-                menu_obj.driver_update_parking_space(
+                menu_obj.update_parking_space(
                     request_data.get("total_capacity"), request_data.get("slot_type"))
             if request_data.get("charge"):
                 if request_data.get("charge") < 0:
@@ -87,7 +87,7 @@ class ParkingSpace(MethodView):
 
         request_data = request.get_json()
         validation_response = validate_request_data(
-            request_data, parking_space_schema)
+            request_data, post_parking_space_schema)
         if validation_response:
             abort(400, message=validation_response)
 

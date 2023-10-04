@@ -83,9 +83,13 @@ class ProgramDriver:
                               "vehicle_type": vehicle_type}
             return formatted_data, "Vehicle Added Successfully. Customer Details Existed."
 
-        self.db_helper.insert_customer_details(
+        customer_id = self.db_helper.insert_customer_details(
             name, email_address, phone_number)
         vehicle.add_vehicle(vehicle_number, vehicle_type)
+        formatted_data = {"customer": {"customer_id": customer_id, "name": name, "email_address": email_address,
+                              "phone_number": phone_number}, "vehicle_number": vehicle_number,
+                              "vehicle_type": vehicle_type}
+        return formatted_data, "Vehicle Added Successfully. Customer Details Added."
 
     def driver_add_vehicle_category(self, slot_type, total_capacity, parking_charge):
 
@@ -111,7 +115,7 @@ class ProgramDriver:
             {"slot_type": i[0], "total_capacity": i[1], "charge": i[2]} for i in data]
         return vehicle_data
 
-    def driver_update_parking_space(self, new_capacity, parking_category):
+    def update_parking_space(self, new_capacity, parking_category):
 
         validations.validate_integer_input(new_capacity)
         validations.validate_string_input(parking_category)

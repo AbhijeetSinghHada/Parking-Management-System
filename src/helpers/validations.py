@@ -42,4 +42,4 @@ def validate_request_data(request_data, schema):
     try:
         jsonschema.validate(instance=request_data, schema=schema)
     except ValidationError as error:
-        return error.split('\n')[0]
+        return error.message.split('\n')[0]
