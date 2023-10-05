@@ -178,3 +178,214 @@
 2023-10-05 08:54:14,429 DEBUG get_slots_data called
 2023-10-05 08:54:14,429 DEBUG get_multiple_item called with params () returned item : [] 
 2023-10-05 08:54:14,429 INFO 127.0.0.1 - - [05/Oct/2023 08:54:14] "[31m[1mDELETE /slots/RJ20CD7259 HTTP/1.1[0m" 400 -
+2023-10-05 09:56:19,884 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-05 09:56:19,884 INFO [33mPress CTRL+C to quit[0m
+2023-10-05 09:56:19,884 INFO  * Restarting with stat
+2023-10-05 09:56:21,485 WARNING  * Debugger is active!
+2023-10-05 09:56:21,485 INFO  * Debugger PIN: 413-849-336
+2023-10-05 09:56:48,628 DEBUG get_multiple_item called with params (('abhi', '91301e05e44406c12a4626a2382df30b04543c0561e10f5471f24c0928645109'),) returned item : [(1, 'abhi', '91301e05e44406c12a4626a2382df30b04543c0561e10f5471f24c0928645109', 1)] 
+2023-10-05 09:56:48,635 DEBUG get_multiple_item called with params ((1,),) returned item : [('Abhijeet Singh', 1, 'Admin'), ('Abhijeet Singh', 1, 'Operator')] 
+2023-10-05 09:56:48,636 DEBUG convert_user_details_to_dict called with params [('Abhijeet Singh', 1, 'Admin'), ('Abhijeet Singh', 1, 'Operator')]
+2023-10-05 09:56:48,639 INFO 127.0.0.1 - - [05/Oct/2023 09:56:48] "POST /login HTTP/1.1" 200 -
+2023-10-05 09:56:53,540 DEBUG get_vehicle_category_data called
+2023-10-05 09:56:53,542 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-05 09:56:53,542 DEBUG update_parking_space called, params - vehicle type : LMV, new_capacity : 10 
+2023-10-05 09:56:53,542 DEBUG update_parking_capacity called with params 10,LMV
+2023-10-05 09:56:53,545 DEBUG update_item called with params ((10, 'LMV'),) returned item : 0, 
+2023-10-05 09:56:53,545 DEBUG update_charges called with params 10,LMV
+2023-10-05 09:56:53,546 DEBUG update_item called with params ((10, 'LMV'),) returned item : 0, 
+2023-10-05 09:56:53,547 INFO 127.0.0.1 - - [05/Oct/2023 09:56:53] "PUT /parkingspace HTTP/1.1" 200 -
+2023-10-05 09:57:02,017 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\app.py', reloading
+2023-10-05 09:57:02,144 INFO  * Restarting with stat
+2023-10-05 09:57:04,296 WARNING  * Debugger is active!
+2023-10-05 09:57:04,305 INFO  * Debugger PIN: 413-849-336
+2023-10-05 09:57:09,495 DEBUG get_vehicle_category_data called
+2023-10-05 09:57:09,495 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-05 09:57:09,495 DEBUG update_parking_space called, params - vehicle type : LMV, new_capacity : 10 
+2023-10-05 09:57:09,495 DEBUG update_parking_capacity called with params 10,LMV
+2023-10-05 09:57:09,495 DEBUG update_item called with params ((10, 'LMV'),) returned item : 0, 
+2023-10-05 09:57:09,510 DEBUG update_charges called with params 10,LMV
+2023-10-05 09:57:09,510 DEBUG update_item called with params ((10, 'LMV'),) returned item : 0, 
+2023-10-05 09:57:09,510 INFO 127.0.0.1 - - [05/Oct/2023 09:57:09] "PUT /parkingspace HTTP/1.1" 200 -
+2023-10-05 09:57:13,271 DEBUG get_vehicle_category_data called
+2023-10-05 09:57:13,272 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-05 09:57:13,273 INFO 127.0.0.1 - - [05/Oct/2023 09:57:13] "[31m[1mPUT /parkingspace HTTP/1.1[0m" 400 -
+2023-10-05 09:57:53,073 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\app.py', reloading
+2023-10-05 09:57:53,177 INFO  * Restarting with stat
+2023-10-05 09:57:55,150 WARNING  * Debugger is active!
+2023-10-05 09:57:55,166 INFO  * Debugger PIN: 346-662-641
+2023-10-05 09:58:08,288 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\app.py', reloading
+2023-10-05 09:58:08,362 INFO  * Restarting with stat
+2023-10-05 09:58:09,885 WARNING  * Debugger is active!
+2023-10-05 09:58:09,885 INFO  * Debugger PIN: 346-662-641
+2023-10-05 09:58:17,453 INFO 127.0.0.1 - - [05/Oct/2023 09:58:17] "[35m[1mPUT /parkingspace HTTP/1.1[0m" 500 -
+2023-10-05 09:58:24,085 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\app.py', reloading
+2023-10-05 09:58:24,179 INFO  * Restarting with stat
+2023-10-05 09:58:25,906 WARNING  * Debugger is active!
+2023-10-05 09:58:25,921 INFO  * Debugger PIN: 346-662-641
+2023-10-05 09:58:30,549 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\app.py', reloading
+2023-10-05 09:58:30,636 INFO  * Restarting with stat
+2023-10-05 09:58:32,244 WARNING  * Debugger is active!
+2023-10-05 09:58:32,244 INFO  * Debugger PIN: 346-662-641
+2023-10-05 09:58:55,886 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\app.py', reloading
+2023-10-05 09:58:55,953 INFO  * Restarting with stat
+2023-10-05 09:58:57,509 WARNING  * Debugger is active!
+2023-10-05 09:58:57,510 INFO  * Debugger PIN: 346-662-641
+2023-10-05 09:58:59,396 INFO 127.0.0.1 - - [05/Oct/2023 09:58:59] "[35m[1mPUT /parkingspace HTTP/1.1[0m" 500 -
+2023-10-05 09:59:29,227 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\app.py', reloading
+2023-10-05 09:59:29,333 INFO  * Restarting with stat
+2023-10-05 09:59:30,727 WARNING  * Debugger is active!
+2023-10-05 09:59:30,730 INFO  * Debugger PIN: 413-849-336
+2023-10-05 10:01:09,957 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\app.py', reloading
+2023-10-05 10:01:10,045 INFO  * Restarting with stat
+2023-10-05 10:01:11,513 WARNING  * Debugger is active!
+2023-10-05 10:01:11,518 INFO  * Debugger PIN: 413-849-336
+2023-10-05 10:01:15,227 DEBUG get_vehicle_category_data called
+2023-10-05 10:01:15,227 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-05 10:01:15,227 DEBUG update_parking_space called, params - vehicle type : LMV, new_capacity : 10 
+2023-10-05 10:01:15,227 DEBUG update_parking_capacity called with params 10,LMV
+2023-10-05 10:01:15,243 DEBUG update_item called with params ((10, 'LMV'),) returned item : 0, 
+2023-10-05 10:01:15,243 DEBUG update_charges called with params 10,LMV
+2023-10-05 10:01:15,243 DEBUG update_item called with params ((10, 'LMV'),) returned item : 0, 
+2023-10-05 10:01:15,243 INFO 127.0.0.1 - - [05/Oct/2023 10:01:15] "PUT /parkingspace HTTP/1.1" 200 -
+2023-10-05 10:01:46,749 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\app.py', reloading
+2023-10-05 10:01:46,836 INFO  * Restarting with stat
+2023-10-05 10:02:52,628 INFO  * Restarting with stat
+2023-10-05 10:02:54,081 WARNING  * Debugger is active!
+2023-10-05 10:02:54,096 INFO  * Debugger PIN: 413-849-336
+2023-10-05 10:59:02,333 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\resources\\parkingspace.py', reloading
+2023-10-05 10:59:02,421 INFO  * Restarting with stat
+2023-10-05 10:59:05,413 WARNING  * Debugger is active!
+2023-10-05 10:59:05,416 INFO  * Debugger PIN: 413-849-336
+2023-10-05 10:59:11,542 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\resources\\login.py', reloading
+2023-10-05 10:59:11,621 INFO  * Restarting with stat
+2023-10-05 10:59:13,258 WARNING  * Debugger is active!
+2023-10-05 10:59:13,258 INFO  * Debugger PIN: 413-849-336
+2023-10-05 11:01:02,452 INFO  * Detected change in 'C:\\Users\\ahada\\OneDrive - WatchGuard Technologies Inc\\REST Parking Management System\\Parking_Management_System\\src\\controllers\\billing.py', reloading
+2023-10-05 11:01:02,531 INFO  * Restarting with stat
+2023-10-05 11:01:04,155 WARNING  * Debugger is active!
+2023-10-05 11:01:04,155 INFO  * Debugger PIN: 413-849-336
+2023-10-05 11:01:32,261 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-05 11:01:32,261 INFO [33mPress CTRL+C to quit[0m
+2023-10-05 11:01:32,261 INFO  * Restarting with stat
+2023-10-05 11:01:33,647 WARNING  * Debugger is active!
+2023-10-05 11:01:33,647 INFO  * Debugger PIN: 413-849-336
+2023-10-05 11:01:40,237 DEBUG get_multiple_item called with params (('abhi', '91301e05e44406c12a4626a2382df30b04543c0561e10f5471f24c0928645109'),) returned item : [(1, 'abhi', '91301e05e44406c12a4626a2382df30b04543c0561e10f5471f24c0928645109', 1)] 
+2023-10-05 11:01:40,238 DEBUG get_multiple_item called with params ((1,),) returned item : [('Abhijeet Singh', 1, 'Admin'), ('Abhijeet Singh', 1, 'Operator')] 
+2023-10-05 11:01:40,238 DEBUG convert_user_details_to_dict called with params [('Abhijeet Singh', 1, 'Admin'), ('Abhijeet Singh', 1, 'Operator')]
+2023-10-05 11:01:40,239 INFO 127.0.0.1 - - [05/Oct/2023 11:01:40] "POST /login HTTP/1.1" 200 -
+2023-10-05 11:02:03,607 DEBUG get_vehicle_category_data called
+2023-10-05 11:02:03,607 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-05 11:02:03,607 DEBUG get_vehicle_category_data called
+2023-10-05 11:02:03,607 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-05 11:02:03,607 DEBUG check_if_slot_already_occupied called with params 8, Cycle
+2023-10-05 11:02:03,607 DEBUG get_slots_data called
+2023-10-05 11:02:03,607 DEBUG get_multiple_item called with params () returned item : [] 
+2023-10-05 11:02:03,607 DEBUG get_slots_data called
+2023-10-05 11:02:03,615 DEBUG get_multiple_item called with params () returned item : [] 
+2023-10-05 11:02:03,615 DEBUG check_if_vehicle_exists called with params RJ20CD7259
+2023-10-05 11:02:03,615 DEBUG get_vehicle_data called with params RJ20CD7259,,
+2023-10-05 11:02:03,615 DEBUG get_multiple_item called with params (('RJ20CD7259', '', ''),) returned item : [(1, 'Ram', 'ram@gmail.com', '1234567899', 'RJ20CD7259', 'LMV')] 
+2023-10-05 11:02:03,615 INFO 127.0.0.1 - - [05/Oct/2023 11:02:03] "[31m[1mPOST /slots HTTP/1.1[0m" 400 -
+2023-10-05 11:02:08,365 DEBUG get_vehicle_category_data called
+2023-10-05 11:02:08,373 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-05 11:02:08,373 DEBUG get_vehicle_category_data called
+2023-10-05 11:02:08,373 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-05 11:02:08,373 DEBUG check_if_slot_already_occupied called with params 8, LMV
+2023-10-05 11:02:08,373 DEBUG get_slots_data called
+2023-10-05 11:02:08,373 DEBUG get_multiple_item called with params () returned item : [] 
+2023-10-05 11:02:08,373 DEBUG get_slots_data called
+2023-10-05 11:02:08,373 DEBUG get_multiple_item called with params () returned item : [] 
+2023-10-05 11:02:08,373 DEBUG check_if_vehicle_exists called with params RJ20CD7259
+2023-10-05 11:02:08,373 DEBUG get_vehicle_data called with params RJ20CD7259,,
+2023-10-05 11:02:08,373 DEBUG get_multiple_item called with params (('RJ20CD7259', '', ''),) returned item : [(1, 'Ram', 'ram@gmail.com', '1234567899', 'RJ20CD7259', 'LMV')] 
+2023-10-05 11:02:08,373 DEBUG insert_into_billing_table called with params RJ20CD7259,2023-10-05,11:02
+2023-10-05 11:02:08,413 DEBUG update_item called with params (('RJ20CD7259', datetime.date(2023, 10, 5), '11:02'),) returned item : 5, 
+2023-10-05 11:02:08,413 DEBUG assign_slot called
+2023-10-05 11:02:08,413 DEBUG insert_into_slot_table called with params 8,RJ20CD7259,LMV
+2023-10-05 11:02:08,437 DEBUG update_item called with params ((8, 'RJ20CD7259', 'LMV'),) returned item : 8, 
+2023-10-05 11:02:08,437 INFO 127.0.0.1 - - [05/Oct/2023 11:02:08] "POST /slots HTTP/1.1" 200 -
+2023-10-05 11:02:34,048 DEBUG get_slots_data called
+2023-10-05 11:02:34,048 DEBUG get_multiple_item called with params () returned item : [(8, 1, 'LMV', 2, 5, 'RJ20CD7259', 10, 8)] 
+2023-10-05 11:02:34,048 DEBUG generate_bill called with params 5
+2023-10-05 11:02:34,048 DEBUG parked_time_elapsed_in_hours called with params 5
+2023-10-05 11:02:34,048 DEBUG get_multiple_item called with params ((5,),) returned item : [(datetime.date(2023, 10, 5), datetime.timedelta(seconds=39720))] 
+2023-10-05 11:02:34,048 DEBUG calculate_charges called with params 10,0
+2023-10-05 11:02:34,048 DEBUG update_billing_table called with params 2023-10-05 11:02,10,5
+2023-10-05 11:02:34,065 DEBUG update_item called with params (('2023-10-05 11:02', 10, 5),) returned item : 0, 
+2023-10-05 11:02:34,065 DEBUG generate_bill called with params 5
+2023-10-05 11:02:34,065 DEBUG get_billing_details called with params 5
+2023-10-05 11:02:34,065 DEBUG get_multiple_item called with params ((5,),) returned item : [(5, 1, 'Ram', 'ram@gmail.com', '1234567899', 'RJ20CD7259', 'LMV', datetime.date(2023, 10, 5), datetime.timedelta(seconds=39720), datetime.datetime(2023, 10, 5, 11, 2), 10)] 
+2023-10-05 11:02:34,065 DEBUG unassign_slot called with params 8
+2023-10-05 11:02:34,065 DEBUG remove_parked_slot called with params 8
+2023-10-05 11:02:34,073 DEBUG update_item called with params ((8,),) returned item : 0, 
+2023-10-05 11:02:34,073 INFO 127.0.0.1 - - [05/Oct/2023 11:02:34] "DELETE /slots/RJ20CD7259 HTTP/1.1" 200 -
+2023-10-05 11:02:37,344 DEBUG get_slots_data called
+2023-10-05 11:02:37,344 DEBUG get_multiple_item called with params () returned item : [] 
+2023-10-05 11:02:37,344 INFO 127.0.0.1 - - [05/Oct/2023 11:02:37] "[31m[1mDELETE /slots/RJ20CD7259 HTTP/1.1[0m" 400 -
+2023-10-05 11:02:43,155 DEBUG get_slot_data_by_slot_type called with params Bike
+2023-10-05 11:02:43,155 DEBUG get_slots_data called
+2023-10-05 11:02:43,155 DEBUG get_multiple_item called with params () returned item : [] 
+2023-10-05 11:02:43,155 DEBUG get_parking_capacity called with params Bike
+2023-10-05 11:02:43,155 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-05 11:02:43,155 INFO 127.0.0.1 - - [05/Oct/2023 11:02:43] "GET /slots/Bike HTTP/1.1" 200 -
+2023-10-05 11:02:50,155 DEBUG get_slot_data_by_slot_type called with params LMV
+2023-10-05 11:02:50,155 DEBUG get_slots_data called
+2023-10-05 11:02:50,155 DEBUG get_multiple_item called with params () returned item : [] 
+2023-10-05 11:02:50,155 DEBUG get_parking_capacity called with params LMV
+2023-10-05 11:02:50,155 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-05 11:02:50,155 INFO 127.0.0.1 - - [05/Oct/2023 11:02:50] "GET /slots/LMV HTTP/1.1" 200 -
+2023-10-05 11:02:56,631 DEBUG get_vehicle_category_data called
+2023-10-05 11:02:56,631 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-05 11:02:56,631 DEBUG check_if_slot_already_occupied called with params 4, LMV
+2023-10-05 11:02:56,631 DEBUG get_slots_data called
+2023-10-05 11:02:56,631 DEBUG get_multiple_item called with params () returned item : [] 
+2023-10-05 11:02:56,631 DEBUG ban_slot called
+2023-10-05 11:02:56,631 DEBUG ban_slot_by_slot_number called with params 4,LMV
+2023-10-05 11:02:56,639 DEBUG update_item called with params ((4, 'LMV'),) returned item : 9, 
+2023-10-05 11:02:56,639 INFO 127.0.0.1 - - [05/Oct/2023 11:02:56] "POST /slots/ban HTTP/1.1" 200 -
+2023-10-05 11:03:00,118 DEBUG get_vehicle_category_data called
+2023-10-05 11:03:00,118 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-05 11:03:00,118 DEBUG check_if_slot_already_occupied called with params 4, LMV
+2023-10-05 11:03:00,118 DEBUG get_slots_data called
+2023-10-05 11:03:00,118 DEBUG get_multiple_item called with params () returned item : [(4, -1, 'LMV', 1, -1, '0', 10, 9)] 
+2023-10-05 11:03:00,118 INFO 127.0.0.1 - - [05/Oct/2023 11:03:00] "[31m[1mPOST /slots/ban HTTP/1.1[0m" 409 -
+2023-10-05 11:03:03,536 DEBUG view_ban_slots called
+2023-10-05 11:03:03,536 DEBUG get_slots_data called
+2023-10-05 11:03:03,536 DEBUG get_multiple_item called with params () returned item : [(4, -1, 'LMV', 1, -1, '0', 10, 9)] 
+2023-10-05 11:03:03,536 INFO 127.0.0.1 - - [05/Oct/2023 11:03:03] "GET /slots/ban HTTP/1.1" 200 -
+2023-10-05 11:03:08,750 DEBUG unban_slot called
+2023-10-05 11:03:08,750 DEBUG unban_slot called with params 8,LMV
+2023-10-05 11:03:08,758 DEBUG update_item called with params ((8, 'LMV'),) returned item : 0, 
+2023-10-05 11:03:08,758 INFO 127.0.0.1 - - [05/Oct/2023 11:03:08] "DELETE /slots/ban HTTP/1.1" 200 -
+2023-10-05 11:03:22,172 DEBUG unban_slot called
+2023-10-05 11:03:22,172 DEBUG unban_slot called with params 4,LMV
+2023-10-05 11:03:22,188 DEBUG update_item called with params ((4, 'LMV'),) returned item : 0, 
+2023-10-05 11:03:22,188 INFO 127.0.0.1 - - [05/Oct/2023 11:03:22] "DELETE /slots/ban HTTP/1.1" 200 -
+2023-10-05 11:03:32,317 DEBUG get_vehicle_category_data called
+2023-10-05 11:03:32,325 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-05 11:03:32,325 INFO 127.0.0.1 - - [05/Oct/2023 11:03:32] "GET /parkingspace HTTP/1.1" 200 -
+2023-10-05 11:03:44,367 DEBUG get_vehicle_category_data called
+2023-10-05 11:03:44,370 DEBUG get_multiple_item called with params () returned item : [('LMV', 10, 10), ('HMV', 10, 10), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-05 11:03:44,370 DEBUG get_slots_data called
+2023-10-05 11:03:44,370 DEBUG get_multiple_item called with params () returned item : [] 
+2023-10-05 11:03:44,370 DEBUG update_parking_space called, params - vehicle type : LMV, new_capacity : 4 
+2023-10-05 11:03:44,370 DEBUG update_parking_capacity called with params 4,LMV
+2023-10-05 11:03:44,384 DEBUG update_item called with params ((4, 'LMV'),) returned item : 0, 
+2023-10-05 11:03:44,384 DEBUG update_charges called with params 10,LMV
+2023-10-05 11:03:44,384 DEBUG update_item called with params ((10, 'LMV'),) returned item : 0, 
+2023-10-05 11:03:44,384 INFO 127.0.0.1 - - [05/Oct/2023 11:03:44] "PUT /parkingspace HTTP/1.1" 200 -
+2023-10-05 11:04:00,472 DEBUG get_vehicle_category_data called
+2023-10-05 11:04:00,472 DEBUG get_multiple_item called with params () returned item : [('LMV', 4, 10), ('HMV', 10, 10), ('Bike', 10, 15), ('Cycle', 10, 2)] 
+2023-10-05 11:04:00,472 DEBUG update_parking_space called, params - vehicle type : HMV, new_capacity : 10 
+2023-10-05 11:04:00,472 DEBUG update_parking_capacity called with params 10,HMV
+2023-10-05 11:04:00,472 DEBUG update_item called with params ((10, 'HMV'),) returned item : 0, 
+2023-10-05 11:04:00,472 DEBUG update_charges called with params 50,HMV
+2023-10-05 11:04:00,488 DEBUG update_item called with params ((50, 'HMV'),) returned item : 0, 
+2023-10-05 11:04:00,488 INFO 127.0.0.1 - - [05/Oct/2023 11:04:00] "PUT /parkingspace HTTP/1.1" 200 -
+2023-10-05 11:04:08,146 DEBUG check_if_vehicle_exists called with params RJ20CQ7788
+2023-10-05 11:04:08,146 DEBUG get_vehicle_data called with params RJ20CQ7788,,
+2023-10-05 11:04:08,154 DEBUG get_multiple_item called with params (('RJ20CQ7788', '', ''),) returned item : [(13, 'Udbhav', 'udbhav@gmail.com', '6577754536', 'RJ20CQ7788', 'HMV')] 
+2023-10-05 11:04:08,154 INFO 127.0.0.1 - - [05/Oct/2023 11:04:08] "[31m[1mPOST /vehicle HTTP/1.1[0m" 409 -

@@ -47,10 +47,9 @@ class TestBilling(unittest.TestCase):
         self.assertEqual(bill, expected_bill)
 
     def test_generate_bill_with_non_existing_id(self):
-        # Mock the behavior of db_helper.get_billing_details to return None
         self.db_helper.get_billing_details.return_value = None
 
-        bill_id = 999  # Replace with a non-existent bill_id for testing
+        bill_id = 999  
         with self.assertRaises(LookupError):
             self.billing.generate_bill(bill_id)
 

@@ -11,7 +11,7 @@ from flask_smorest import Api
 from flask import Flask
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s %(levelname)s %(message)s',
-                    filename='log.txt',)
+                    filename=os.getenv('LOG_FILE_NAME'),)
 logger = logging.getLogger(__name__)
 
 
@@ -19,16 +19,16 @@ def create_app():
     app = Flask(__name__)
 
     app.config["PROPOGATE_EXCEPTIONS"] = True
-    app.config["API_TITLE"] = "Park+ Parking Management System REST API"
-    app.config["API_VERSION"] = "v1"
-    app.config["OPENAPI_VERSION"] = "3.0.3"
-    app.config["OPENAPI_URL_PREFIX"] = "/"
-    app.config["OPENAPI_SWAGGER_UI_PATH"] = "/swagger-ui"
-    app.config["OPENAPI_SWAGGER_UI_URL"] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist/"
+    app.config["API_TITLE"] = os.getenv("API_TITLE")
+    app.config["API_VERSION"] = os.getenv("API_VERSION") 
+    app.config["OPENAPI_VERSION"] = os.getenv("OPENAPI_VERSION")
+    app.config["OPENAPI_URL_PREFIX"] = os.getenv("OPENAPI_URL_PREFIX") 
+    app.config["OPENAPI_SWAGGER_UI_PATH"] = os.getenv("OPENAPI_SWAGGER_UI_PATH") 
+    app.config["OPENAPI_SWAGGER_UI_URL"] = os.getenv("OPENAPI_SWAGGER_UI_URL") 
 
     api = Api(app)
 
-    app.config["JWT_SECRET_KEY"] = "abhi"
+    app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
     jwt = JWTManager(app)
 
     api.register_blueprint(SlotsBlueprint)

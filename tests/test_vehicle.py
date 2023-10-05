@@ -38,11 +38,6 @@ class TestVehicle(unittest.TestCase):
         return_val = self.db_helper.add_vehicle_category('LMV', 20, 100)
         self.assertEqual(return_val, None)
 
-    def test_add_vehicle_category(self):
-        self.db_helper.add_vehicle_category.return_value = None
-        self.vehicle.add_vehicle_category('LMV', 20, 100)
-        return_val = self.db_helper.add_vehicle_category('LMV', 20, 100)
-        self.assertEqual(return_val, None)
 
 
 if __name__ == '__main__':
