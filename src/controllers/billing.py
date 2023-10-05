@@ -22,11 +22,13 @@ class Billing:
 
     def generate_bill(self, bill_id):
         logger.debug("generate_bill called with params {}".format(bill_id))
-        data = self.db_helper.get_billing_details(bill_id)
-        if not data:
+        bill_data = self.db_helper.get_billing_details(bill_id)
+
+        if not bill_data:
             logger.critical(prompts["prompts"]["BILL_ID_NOT_EXISTS"])
             raise LookupError(prompts["prompts"]["BILL_ID_NOT_EXISTS"])
-        bill = list(data[0])
+        
+        bill = list(bill_data[0])
         _date = bill[7]
         _time = bill[8]
         date_time = return_date_time_combined(_date, _time)

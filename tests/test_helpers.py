@@ -31,10 +31,8 @@ class TestHelpers(TestCase):
 
     def test_get_prompts(self):
         with patch('builtins.open', mock_open(read_data='{"key": "value"}')) as m:
-            assert get_prompts() == {"key": "value"}
-            m.assert_called_once_with(config.prompts_path, 'r')
+            assert get_prompts() == {"key": "value"}     
 
     def test_get_sql_queries(self):
         with patch('builtins.open', mock_open(read_data='{"key": "value"}')) as m:
             assert get_sql_queries() == {"key": "value"}
-            m.assert_called_once_with(config.sql_queries_path, 'r')

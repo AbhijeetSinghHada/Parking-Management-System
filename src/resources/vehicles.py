@@ -16,7 +16,7 @@ blp = Blueprint("vehicle", __name__, description="Operations on Vehicles")
 
 db = Database()
 db_helper = DatabaseHelper(db)
-menu_obj = ProgramDriver(db)
+program_driver = ProgramDriver(db)
 
 
 @blp.route("/vehicle")
@@ -24,24 +24,27 @@ class Vehicle(MethodView):
 
     @jwt_required()
     def post(self):
+
         jwt = get_jwt()
         role = jwt.get("role")
-
         if "Admin" not in role and "Operator" not in role:
             abort(403, message="Forbidden.")
 
         request_data = request.get_json()
+
         validation_response = validate_request_data(
             request_data, vehicle_schema)
         if validation_response:
             abort(400, message=validation_response)
 
-        parameters = (request_data.get("vehicle_number"), request_data.get("vehicle_type"),
-                      request_data.get("customer").get(
-                          "customer_id"), request_data.get("customer").get("name"),
-                      request_data.get("customer").get("email_address"), request_data.get("customer").get("phone_number"))
+        parameters = (request_data.get("vehicle_number"), 
+                      request_data.get("vehicle_type"),
+                      request_data.get("customer").get("customer_id"), 
+                      request_data.get("customer").get("name"),
+                      request_data.get("customer").get("email_address"), 
+                      request_data.get("customer").get("phone_number"))
         try:
-            data, response = menu_obj.add_vehicle(*parameters)
+            data, response = program_driver.add_vehicle(*parameters)
             data["message"] = response
             return data
         except LookupError as error:

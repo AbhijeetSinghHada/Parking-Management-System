@@ -91,7 +91,7 @@ class ProgramDriver:
                               "vehicle_type": vehicle_type}
         return formatted_data, "Vehicle Added Successfully. Customer Details Added."
 
-    def driver_add_vehicle_category(self, slot_type, total_capacity, parking_charge):
+    def add_vehicle_category(self, slot_type, total_capacity, parking_charge):
 
         validations.validate_string_input(slot_type)
         validations.validate_integer_input(total_capacity)

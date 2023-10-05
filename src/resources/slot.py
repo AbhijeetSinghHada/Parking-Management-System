@@ -15,7 +15,7 @@ blp = Blueprint("slot", __name__, description="Operations on Slot")
 
 db = Database()
 db_helper = DatabaseHelper(db)
-menu_obj = ProgramDriver(db)
+program_driver = ProgramDriver(db)
 
 
 @blp.route("/slots")
@@ -34,9 +34,9 @@ class Slots(MethodView):
         if validation_response:
             return validation_response, 400
 
-        menu_obj = ProgramDriver(db)
+        program_driver = ProgramDriver(db)
         try:
-            menu_obj.assign_slot(request_data.get("slot_number"), request_data.get(
+            program_driver.assign_slot(request_data.get("slot_number"), request_data.get(
                 "vehicle_type"), request_data.get("vehicle_number"))
             return request_data
         except LookupError as error:
@@ -63,7 +63,7 @@ class ListSlots(MethodView):
             abort(403, message="Forbidden.")
 
         try:
-            slots = menu_obj.get_slot_table_by_category(slot_type)
+            slots = program_driver.get_slot_table_by_category(slot_type)
             return slots
         except LookupError as error:
             abort(409, message=str(error))
@@ -90,7 +90,7 @@ class RemoveVehicleFromSlot(MethodView):
             abort(403, message="Forbidden.")
 
         try:
-            slot_data, bill = menu_obj.unassign_slot(vehicle_number)
+            slot_data, bill = program_driver.unassign_slot(vehicle_number)
             return {"slot": slot_data, "bill": bill}
         except LookupError as error:
             abort(409, message=str(error))
@@ -120,7 +120,7 @@ class BanSlot(MethodView):
             abort(400, message=validation_response)
 
         try:
-            menu_obj.ban_slot(request_data.get("slot_number"),
+            program_driver.ban_slot(request_data.get("slot_number"),
                               request_data.get("vehicle_type"))
             return request_data
         except LookupError as error:
@@ -142,13 +142,14 @@ class BanSlot(MethodView):
             abort(403, message="Forbidden.")
 
         request_data = request.get_json()
+        
         validation_response = validate_request_data(
             request_data, ban_slot_schema)
         if validation_response:
             abort(400, message=validation_response)
 
         try:
-            menu_obj.unban_slot(request_data.get("slot_number"),
+            program_driver.unban_slot(request_data.get("slot_number"),
                                 request_data.get("vehicle_type"))
             return request_data
         except LookupError as error:
@@ -170,7 +171,7 @@ class BanSlot(MethodView):
             abort(403, message="Forbidden.")
 
         try:
-            slots = menu_obj.view_ban_slots()
+            slots = program_driver.view_ban_slots()
             return slots
         except LookupError as error:
             abort(409, message=str(error))

@@ -17,7 +17,7 @@ blp = Blueprint("parkingspace", __name__,
 
 db = Database()
 db_helper = DatabaseHelper(db)
-menu_obj = ProgramDriver(db)
+program_driver = ProgramDriver(db)
 
 
 @blp.route("/parkingspace")
@@ -31,7 +31,7 @@ class ParkingSpace(MethodView):
             abort(403, message="Forbidden")
 
         try:
-            parking_spaces = menu_obj.check_parking_capacity()
+            parking_spaces = program_driver.check_parking_capacity()
             return parking_spaces
         except LookupError as error:
             abort(409, message=str(error))
@@ -60,12 +60,12 @@ class ParkingSpace(MethodView):
             if request_data.get("total_capacity"):
                 if request_data.get("total_capacity") < 0:
                     raise ValueError("Total Capacity cannot be less than 0")
-                menu_obj.update_parking_space(
+                program_driver.update_parking_space(
                     request_data.get("total_capacity"), request_data.get("slot_type"))
             if request_data.get("charge"):
                 if request_data.get("charge") < 0:
                     raise ValueError("Charge cannot be less than 0")
-                menu_obj.update_parking_charges(
+                program_driver.update_parking_charges(
                     request_data.get("charge"), request_data.get("slot_type"))
             return request_data
         except LookupError as error:
@@ -93,7 +93,7 @@ class ParkingSpace(MethodView):
 
         try:
             if request_data.get("total_capacity") and request_data.get("charge"):
-                menu_obj.driver_add_vehicle_category(
+                program_driver.add_vehicle_category(
                     request_data.get("slot_type"), request_data.get("total_capacity"), request_data.get("charge"))
             else:
                 abort(

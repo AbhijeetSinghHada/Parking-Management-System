@@ -1,11 +1,10 @@
-from src.controllers.customer import Customer
 from src.helpers import helpers
 import logging
 
 logger = logging.getLogger(__name__)
 
 
-class Vehicle(Customer):
+class Vehicle:
     def __init__(self, db_helpers):
         self.sql_queries = helpers.get_sql_queries()
         super().__init__()
