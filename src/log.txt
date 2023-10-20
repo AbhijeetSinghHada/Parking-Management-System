@@ -389,3 +389,9 @@
 2023-10-05 11:04:08,146 DEBUG get_vehicle_data called with params RJ20CQ7788,,
 2023-10-05 11:04:08,154 DEBUG get_multiple_item called with params (('RJ20CQ7788', '', ''),) returned item : [(13, 'Udbhav', 'udbhav@gmail.com', '6577754536', 'RJ20CQ7788', 'HMV')] 
 2023-10-05 11:04:08,154 INFO 127.0.0.1 - - [05/Oct/2023 11:04:08] "[31m[1mPOST /vehicle HTTP/1.1[0m" 409 -
+2023-10-05 11:54:21,415 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-10-05 11:54:21,415 INFO [33mPress CTRL+C to quit[0m
+2023-10-05 11:54:21,415 INFO  * Restarting with stat
+2023-10-05 11:54:22,784 WARNING  * Debugger is active!
+2023-10-05 11:54:22,799 INFO  * Debugger PIN: 413-849-336
